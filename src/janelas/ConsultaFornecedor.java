@@ -33,6 +33,7 @@ public class ConsultaFornecedor extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
         this.pai = (JFrame) parent;
+        this.buscarFornecedor();
         this.jchave.requestFocus();
     }
     

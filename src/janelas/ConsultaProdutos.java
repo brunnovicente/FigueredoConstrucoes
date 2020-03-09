@@ -44,7 +44,7 @@ public class ConsultaProdutos extends javax.swing.JDialog {
         //produto = new Produto();
         this.setLocationRelativeTo(null);
 
-        //this.buscarProduto();
+        this.buscarProduto();
         this.jChave.requestFocus();
         //jbutaoExcluir.setVisible(false);
         //jTabelaPesquisa.setAutoCreateRowSorter(true);
