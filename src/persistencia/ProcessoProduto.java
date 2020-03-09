@@ -41,7 +41,8 @@ public class ProcessoProduto extends Thread {
     public void preencherTabela(){
         DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
         for (Produto produto : this.produtos){
-            DecimalFormat df = new DecimalFormat("#,###.00");
+            //DecimalFormat df = new DecimalFormat("#,###.00");
+            DecimalFormat df = new DecimalFormat("R$ ###,##0.00");
             String[] linha = new String[4];
             linha[0] = produto.getCodigobarras();
             linha[1] = produto.getDescricao();

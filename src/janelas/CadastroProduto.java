@@ -46,7 +46,7 @@ public class CadastroProduto extends javax.swing.JDialog {
         jestoque.setText(produto.getEstoque()+"");
         jpreco.setText(produto.getPreco()+"");
         jmarca.setText(produto.getMarca());
-        
+        this.fornecedores = produto.getFornecedor();
         DefaultTableModel modelo = (DefaultTableModel) jtabela_fornecedor.getModel();
         String[] linha = new String[3];
         for (Produto_fornecedor fornecedor : produto.getFornecedor()){
@@ -473,12 +473,16 @@ public class CadastroProduto extends javax.swing.JDialog {
             jbutaonovo.setEnabled(true);
             this.produto = null;
         }else{
+            produto.setCodigobarras(jcodigo.getText());
             produto.setDescricao(jdescricao.getText());
-            produto.setEstoque(Integer.parseInt(jestoque.getText()));
+            produto.setEstoque(Double.parseDouble(jestoque.getText()));
             produto.setPreco(Double.parseDouble(jpreco.getText()));
+            produto.setMarca(jmarca.getText());
+            produto.setStatus(Produto.ATIVO);
+            produto.setFornecedor(this.fornecedores);
             produto.setStatus(Produto.ATIVO);
             Banco.getBanco().editarProduto(this.produto);
-            JOptionPane.showMessageDialog(null, "Produto editado com sucesso!");
+            JOptionPane.showMessageDialog(null, "Produto alterado com sucesso!");
             this.dispose();
         }
     }

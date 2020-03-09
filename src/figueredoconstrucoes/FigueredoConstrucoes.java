@@ -7,8 +7,10 @@ package figueredoconstrucoes;
 
 import entidades.Fornecedor;
 import janelas.TelaLogin;
+import java.text.DecimalFormat;
 import java.util.List;
 import persistencia.Banco;
+import persistencia.Criptografia;
 
 /**
  *
@@ -23,6 +25,8 @@ public class FigueredoConstrucoes {
         // TODO code application logic here
         TelaLogin telalogin = new TelaLogin();
         telalogin.setVisible(true);
+        //DecimalFormat doisDigitos = new DecimalFormat("R$ ###,##0.00");
+        //System.out.println(doisDigitos.format(0.5));
         
     }
     

@@ -9,7 +9,15 @@ import entidades.Cliente;
 import entidades.Fornecedor;
 import entidades.Produto;
 import entidades.Usuario;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -54,9 +62,37 @@ public class Banco {
     /**
      * Conecta a classe ao banco de dados
      */
-    public void abrirInstancia(){
-       factory = Persistence.createEntityManagerFactory("estoque");
+    
+    /*public void abrirInstancia(){
+       factory = Persistence.createEntityManagerFactory("figueredo");
        em = factory.createEntityManager();
+    }
+    */
+    public void abrirInstancia(){
+       Properties config = new Properties();
+        try {  
+            
+            config.load(new FileInputStream("propriedades.ini"));
+            //System.out.println("IP DO COMPUTADOR: "+config.getProperty("IP"));
+            
+            Map propriedades = new HashMap<String,String>();
+            String servidor = Criptografia.getCriptografia().decrypt(config.getProperty("SERVIDOR"));
+            String banco = Criptografia.getCriptografia().decrypt(config.getProperty("BANCO"));
+            String usuario = Criptografia.getCriptografia().decrypt(config.getProperty("USUARIO"));
+            String senha = Criptografia.getCriptografia().decrypt(config.getProperty("SENHA"));
+            
+            propriedades.put("javax.persistence.jdbc.url", "jdbc:mysql://"+servidor+":3306/"+banco+"?zeroDateTimeBehavior=convertToNull");
+            propriedades.put("javax.persistence.jdbc.driver","com.mysql.jdbc.Driver");
+            propriedades.put("javax.persistence.jdbc.user",usuario);
+            propriedades.put("javax.persistence.jdbc.password",senha);
+            
+            factory = Persistence.createEntityManagerFactory("figueredo", propriedades);
+            em = factory.createEntityManager();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Banco.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Banco.class.getName()).log(Level.SEVERE, null, ex);
+        }
    }
    
     /**

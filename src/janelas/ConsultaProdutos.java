@@ -47,7 +47,7 @@ public class ConsultaProdutos extends javax.swing.JDialog {
         //this.buscarProduto();
         this.jChave.requestFocus();
         //jbutaoExcluir.setVisible(false);
-        jTabelaPesquisa.setAutoCreateRowSorter(true);
+        //jTabelaPesquisa.setAutoCreateRowSorter(true);
     }
     
     public ConsultaProdutos(java.awt.Frame parent, boolean modal, Produto produto) {
@@ -124,7 +124,7 @@ public class ConsultaProdutos extends javax.swing.JDialog {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados dos Produtos"));
 
-        jTabelaPesquisa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTabelaPesquisa.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jTabelaPesquisa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -141,7 +141,7 @@ public class ConsultaProdutos extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jTabelaPesquisa.setRowHeight(25);
+        jTabelaPesquisa.setRowHeight(40);
         jTabelaPesquisa.getTableHeader().setReorderingAllowed(false);
         jTabelaPesquisa.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -173,7 +173,7 @@ public class ConsultaProdutos extends javax.swing.JDialog {
             jTabelaPesquisa.getColumnModel().getColumn(3).setPreferredWidth(50);
         }
 
-        jChave.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jChave.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jChave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jChaveActionPerformed(evt);
@@ -240,7 +240,7 @@ public class ConsultaProdutos extends javax.swing.JDialog {
         jPanel3.setToolTipText("");
         jPanel3.setPreferredSize(new java.awt.Dimension(100, 50));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 32)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Gerência de Produtos");
 
@@ -248,21 +248,25 @@ public class ConsultaProdutos extends javax.swing.JDialog {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(379, 379, 379)
                 .addComponent(jLabel1)
-                .addGap(456, 456, 456))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Add.png"))); // NOI18N
         jButton1.setText("Novo");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -376,12 +380,18 @@ public class ConsultaProdutos extends javax.swing.JDialog {
             this.buscarProduto();
          }
     }//GEN-LAST:event_jbutaoExcluirActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        CadastroProduto cadproduto = new CadastroProduto(this.pai, true);
+        cadproduto.setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
    
     private void buscarProduto(){
         this.limparTabelas();
         this.lista = new ArrayList<>();
         ProcessoProduto busca = new ProcessoProduto(jTabelaPesquisa,jChave.getText(), this.lista);
         busca.start();
+        jChave.requestFocus();
     }
      
     private void editar(){

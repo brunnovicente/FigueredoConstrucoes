@@ -68,7 +68,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
@@ -166,17 +165,9 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/estoque.png"))); // NOI18N
         jMenu6.setText("ESTOQUE");
 
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/produtosSuper.png"))); // NOI18N
-        jMenuItem3.setText("CADASTRAR PRODUTO");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu6.add(jMenuItem3);
-
+        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/consultaProduto.png"))); // NOI18N
-        jMenuItem4.setText("CONSULTA DE PRODUTOS");
+        jMenuItem4.setText("GERÊNCIA DE PRODUTOS");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
@@ -184,6 +175,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem4);
 
+        jMenuItem10.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
         jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Provider-32.png"))); // NOI18N
         jMenuItem10.setText("GERÊNCIA DE FORNECEDORES");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
@@ -193,6 +185,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem10);
 
+        jMenuItem12.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
         jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/addProduto.png"))); // NOI18N
         jMenuItem12.setText("ENTRADA DE PRODUTOS");
         jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
@@ -268,11 +261,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         //janela.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        CadastroProduto janela = new CadastroProduto(this, true);
-        janela.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         ConsultaProdutos janela = new ConsultaProdutos(this, true);
         janela.setVisible(true);
@@ -314,7 +302,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;

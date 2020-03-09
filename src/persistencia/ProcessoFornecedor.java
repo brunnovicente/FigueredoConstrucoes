@@ -43,10 +43,10 @@ public class ProcessoFornecedor extends Thread {
         DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
         for (Fornecedor fornecedor : this.fornecedores){
             //DecimalFormat df = new DecimalFormat("#,###.00");
-            String[] linha = new String[3];
-            linha[0] = fornecedor.getId()+"";
-            linha[1] = fornecedor.getCnpj();
-            linha[2] = fornecedor.getRazao();
+            String[] linha = new String[2];
+            //linha[0] = fornecedor.getId()+"";
+            linha[0] = fornecedor.getCnpj();
+            linha[1] = fornecedor.getRazao();
             //linha[3] = fornecedor.getEndereco();
             //linha[4] = fornecedor.getTelefone1();
             //linha[5] = fornecedor.getTelefone2();

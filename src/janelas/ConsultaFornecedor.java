@@ -96,24 +96,24 @@ public class ConsultaFornecedor extends javax.swing.JDialog {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados da Busca"));
 
-        jtabela.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jtabela.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jtabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "COD", "CNPJ", "RAZÃO SOCIAL"
+                "CNPJ", "RAZÃO SOCIAL"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jtabela.setRowHeight(30);
+        jtabela.setRowHeight(40);
         jtabela.getTableHeader().setReorderingAllowed(false);
         jtabela.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -123,17 +123,15 @@ public class ConsultaFornecedor extends javax.swing.JDialog {
         jScrollPane1.setViewportView(jtabela);
         if (jtabela.getColumnModel().getColumnCount() > 0) {
             jtabela.getColumnModel().getColumn(0).setResizable(false);
-            jtabela.getColumnModel().getColumn(0).setPreferredWidth(5);
+            jtabela.getColumnModel().getColumn(0).setPreferredWidth(100);
             jtabela.getColumnModel().getColumn(1).setResizable(false);
-            jtabela.getColumnModel().getColumn(1).setPreferredWidth(50);
-            jtabela.getColumnModel().getColumn(2).setResizable(false);
-            jtabela.getColumnModel().getColumn(2).setPreferredWidth(600);
+            jtabela.getColumnModel().getColumn(1).setPreferredWidth(600);
         }
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Buscar");
 
-        jchave.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jchave.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jchave.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jchaveKeyPressed(evt);
@@ -206,7 +204,7 @@ public class ConsultaFornecedor extends javax.swing.JDialog {
         jPanel2.setForeground(new java.awt.Color(0, 0, 204));
         jPanel2.setPreferredSize(new java.awt.Dimension(623, 50));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 32)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Gerência de Fornecedores");
 
@@ -217,14 +215,13 @@ public class ConsultaFornecedor extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addGap(397, 397, 397))
+                .addGap(344, 344, 344))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
