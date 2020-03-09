@@ -5,6 +5,11 @@
  */
 package figueredoconstrucoes;
 
+import entidades.Fornecedor;
+import janelas.TelaLogin;
+import java.util.List;
+import persistencia.Banco;
+
 /**
  *
  * @author brunn
@@ -16,6 +21,16 @@ public class FigueredoConstrucoes {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        //TelaLogin telalogin = new TelaLogin();
+        //telalogin.setVisible(true);
+        
+        List<Fornecedor> fornecedor = Banco.getBanco().consultaFornecedor("");
+        for(Fornecedor f: fornecedor){
+            System.out.println(f.getProdutos().size());
+        }
+        
     }
+    
+    
     
 }
