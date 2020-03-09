@@ -34,10 +34,8 @@ public class Fornecedor {
     private String telefone2;
     private String email;
     private int status;
-    
-    @ManyToMany(mappedBy="fornecedor")
-    private List<Produto> produtos;
-    
+   
+   
     public static int getATIVO() {
         return ATIVO;
     }
@@ -110,12 +108,5 @@ public class Fornecedor {
         this.endereco = endereco;
     }
 
-    public List<Produto> getProdutos() {
-        return produtos;
-    }
-
-    public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
-    }
     
 }

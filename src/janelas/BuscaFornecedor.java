@@ -36,6 +36,7 @@ public class BuscaFornecedor extends javax.swing.JDialog {
         this.pai = (JFrame) parent;
         this.jchave.requestFocus();
         this.fornecedor = fornecedor;
+        this.buscarFornecedor();
     }
     
     private void buscarFornecedor(){

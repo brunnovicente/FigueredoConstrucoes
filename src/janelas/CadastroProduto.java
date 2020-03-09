@@ -5,6 +5,7 @@
  */
 package janelas;
 
+import entidades.Produto_fornecedor;
 import entidades.Fornecedor;
 import entidades.Produto;
 import java.awt.event.KeyEvent;
@@ -20,7 +21,7 @@ import persistencia.Banco;
  */
 public class CadastroProduto extends javax.swing.JDialog {
     private Produto produto;
-    private List<Fornecedor> fornecedores;
+    private List<Produto_fornecedor> fornecedores;
     /**
      * Creates new form CadastroProduto
      */
@@ -48,10 +49,10 @@ public class CadastroProduto extends javax.swing.JDialog {
         
         DefaultTableModel modelo = (DefaultTableModel) jtabela_fornecedor.getModel();
         String[] linha = new String[3];
-        for (Fornecedor fornecedor : produto.getFornecedor()){
-            linha[0] = fornecedor.getId()+"";
-            linha[1] = fornecedor.getCnpj();
-            linha[2] = fornecedor.getRazao();
+        for (Produto_fornecedor fornecedor : produto.getFornecedor()){
+            linha[0] = fornecedor.getFornecedor().getId()+"";
+            linha[1] = fornecedor.getFornecedor().getCnpj();
+            linha[2] = fornecedor.getFornecedor().getRazao();
             modelo.addRow(linha);
         }
         
@@ -83,8 +84,8 @@ public class CadastroProduto extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtabela_fornecedor = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jbutaobuscar = new javax.swing.JButton();
+        jbutaoexcluir = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
 
@@ -242,17 +243,17 @@ public class CadastroProduto extends javax.swing.JDialog {
             jtabela_fornecedor.getColumnModel().getColumn(1).setPreferredWidth(400);
         }
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/pesquisa2.png"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbutaobuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/pesquisa2.png"))); // NOI18N
+        jbutaobuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbutaobuscarActionPerformed(evt);
             }
         });
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Lixeira2.png"))); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jbutaoexcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Lixeira2.png"))); // NOI18N
+        jbutaoexcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jbutaoexcluirActionPerformed(evt);
             }
         });
 
@@ -266,17 +267,17 @@ public class CadastroProduto extends javax.swing.JDialog {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 648, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(jbutaoexcluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)))
+                        .addComponent(jbutaobuscar)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(jbutaoexcluir)
+                    .addComponent(jbutaobuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
                 .addContainerGap())
@@ -350,9 +351,9 @@ public class CadastroProduto extends javax.swing.JDialog {
         this.novo();
     }//GEN-LAST:event_jbutaonovoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbutaobuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbutaobuscarActionPerformed
         this.buscaFornecedor();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jbutaobuscarActionPerformed
 
     private void jcodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jcodigoKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
@@ -393,9 +394,9 @@ public class CadastroProduto extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jtabela_fornecedorKeyPressed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jbutaoexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbutaoexcluirActionPerformed
         this.excluir();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jbutaoexcluirActionPerformed
     
     private void novo(){
         jbutaosalvar.setEnabled(true);
@@ -408,6 +409,8 @@ public class CadastroProduto extends javax.swing.JDialog {
         this.produto = null;
         this.fornecedores = new ArrayList();        
         jbutaosalvar.setEnabled(true);
+        jbutaoexcluir.setEnabled(true);
+        jbutaobuscar.setEnabled(true);
         jbutaonovo.setEnabled(false);
         DefaultTableModel modelo = (DefaultTableModel) jtabela_fornecedor.getModel();
         int tam = modelo.getRowCount();
@@ -432,7 +435,10 @@ public class CadastroProduto extends javax.swing.JDialog {
         if(fornecedor.getId() != 0){
             if(!verificarFornecedor(fornecedor.getId())){
                 DefaultTableModel modelo = (DefaultTableModel) jtabela_fornecedor.getModel();
-                this.fornecedores.add(fornecedor);
+                Produto_fornecedor profor = new Produto_fornecedor();
+                profor.setFornecedor(fornecedor);
+                profor.setProduto(produto);
+                this.fornecedores.add(profor);
                 String[] linha = new String[2];
                 linha[0] = fornecedor.getId()+"";
                 linha[1] = fornecedor.getRazao();
@@ -442,8 +448,8 @@ public class CadastroProduto extends javax.swing.JDialog {
         jtabela_fornecedor.requestFocus();
     }
     private boolean verificarFornecedor(int id){
-        for (Fornecedor fornecedor : this.fornecedores){
-            if(fornecedor.getId() == id){
+        for (Produto_fornecedor profor : this.fornecedores){
+            if(profor.getFornecedor().getId() == id){
                 return true;
             }
         }
@@ -462,6 +468,8 @@ public class CadastroProduto extends javax.swing.JDialog {
             Banco.getBanco().cadastrar(this.produto);
             JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
             jbutaosalvar.setEnabled(false);
+            jbutaoexcluir.setEnabled(false);
+            jbutaobuscar.setEnabled(false);
             jbutaonovo.setEnabled(true);
             this.produto = null;
         }else{
@@ -476,8 +484,6 @@ public class CadastroProduto extends javax.swing.JDialog {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -488,6 +494,8 @@ public class CadastroProduto extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbutaobuscar;
+    private javax.swing.JButton jbutaoexcluir;
     private javax.swing.JButton jbutaonovo;
     private javax.swing.JButton jbutaosalvar;
     private javax.swing.JTextField jcodigo;

@@ -40,9 +40,11 @@ public class Produto {
     private double estoque;
     private int status;
     
-    @ManyToMany
-    @JoinTable(name="produto_fornecedor", joinColumns = {@JoinColumn(name="produto_id")}, inverseJoinColumns = {@JoinColumn(name="fornecedor_id")})
-   private List<Fornecedor> fornecedor;
+    //@ManyToMany
+    //@JoinTable(name="produto_fornecedor", joinColumns = {@JoinColumn(name="produto_id")}, inverseJoinColumns = {@JoinColumn(name="fornecedor_id")})
+    @OneToMany(cascade = (CascadeType.ALL), fetch = FetchType.EAGER)
+    @JoinColumn(name = "produto")
+    private List<Produto_fornecedor> fornecedor;
     
     public static int getATIVO() {
         return ATIVO;
@@ -116,11 +118,11 @@ public class Produto {
         this.status = status;
     }
 
-    public List<Fornecedor> getFornecedor() {
+    public List<Produto_fornecedor> getFornecedor() {
         return fornecedor;
     }
 
-    public void setFornecedor(List<Fornecedor> fornecedor) {
+    public void setFornecedor(List<Produto_fornecedor> fornecedor) {
         this.fornecedor = fornecedor;
     }
 
