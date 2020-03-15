@@ -37,7 +37,6 @@ public class CadastroUsuario extends javax.swing.JDialog {
         jnome.setText(usuario.getNome());
         jlogin.setText(usuario.getLogin());
         jemail.setText(usuario.getEmail());
-        this.setTitle("EDITAR USUÁRIO");
         jbutaonovo.setVisible(false);
     }
 
@@ -63,36 +62,37 @@ public class CadastroUsuario extends javax.swing.JDialog {
         jconfirmasenha = new javax.swing.JPasswordField();
         jbutaosalvar = new javax.swing.JButton();
         jbutaonovo = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("CADASTRO DE USUÁRIO");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados do Usuário"));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("NOME DO USÁRIO");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("LOGIN");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("E-MAIL");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("SENHA");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("CONFIRMAÇÃO DA SENHA");
 
-        jnome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jnome.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
-        jlogin.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jlogin.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
-        jemail.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jemail.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
-        jsenha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jsenha.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
-        jconfirmasenha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jconfirmasenha.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -113,7 +113,7 @@ public class CadastroUsuario extends javax.swing.JDialog {
                             .addComponent(jLabel5)
                             .addComponent(jsenha)
                             .addComponent(jconfirmasenha, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE))
-                        .addGap(0, 161, Short.MAX_VALUE)))
+                        .addGap(0, 361, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -158,6 +158,29 @@ public class CadastroUsuario extends javax.swing.JDialog {
             }
         });
 
+        jPanel2.setBackground(new java.awt.Color(0, 0, 204));
+        jPanel2.setPreferredSize(new java.awt.Dimension(100, 50));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 32)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Cadastro de Usuário");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(169, 169, 169)
+                .addComponent(jLabel6)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel6)
+                .addGap(0, 11, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -170,19 +193,22 @@ public class CadastroUsuario extends javax.swing.JDialog {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jbutaonovo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbutaosalvar)))
+                        .addComponent(jbutaosalvar))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbutaosalvar)
                     .addComponent(jbutaonovo))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -249,7 +275,9 @@ public class CadastroUsuario extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JButton jbutaonovo;
     private javax.swing.JButton jbutaosalvar;
     private javax.swing.JPasswordField jconfirmasenha;

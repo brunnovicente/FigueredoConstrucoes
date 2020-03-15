@@ -74,6 +74,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
 
         jMenuItem6.setText("jMenuItem6");
 
@@ -142,6 +144,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Clientes.png"))); // NOI18N
         jMenu5.setText("CLIENTES");
 
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Clientes.png"))); // NOI18N
         jMenuItem1.setText("CADASTRAR CLIENTE");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -151,6 +154,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         });
         jMenu5.add(jMenuItem1);
 
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Clientes.png"))); // NOI18N
         jMenuItem2.setText("CONSULTA DE CLIENTE");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -165,7 +169,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/estoque.png"))); // NOI18N
         jMenu6.setText("ESTOQUE");
 
-        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
+        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/consultaProduto.png"))); // NOI18N
         jMenuItem4.setText("GERÊNCIA DE PRODUTOS");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -175,7 +179,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem4);
 
-        jMenuItem10.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
+        jMenuItem10.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Provider-32.png"))); // NOI18N
         jMenuItem10.setText("GERÊNCIA DE FORNECEDORES");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
@@ -185,7 +189,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem10);
 
-        jMenuItem12.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
+        jMenuItem12.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/addProduto.png"))); // NOI18N
         jMenuItem12.setText("ENTRADA DE PRODUTOS");
         jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
@@ -200,6 +204,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Ferramentas.png"))); // NOI18N
         jMenu3.setText("SISTEMA");
 
+        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/EditarPessoa.png"))); // NOI18N
         jMenuItem5.setText("GERENCIAR USUÁRIO");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
@@ -209,6 +214,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem5);
 
+        jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/EditarPessoa.png"))); // NOI18N
         jMenuItem7.setText("ALTERAR DADOS DE USUÁRIO");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
@@ -217,6 +223,16 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMenuItem7);
+
+        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/backup.png"))); // NOI18N
+        jMenuItem3.setText("FAZER BACKUP");
+        jMenu3.add(jMenuItem3);
+
+        jMenuItem11.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/backup.png"))); // NOI18N
+        jMenuItem11.setText("RESTAURAR BACKUP");
+        jMenu3.add(jMenuItem11);
 
         jMenuBar1.add(jMenu3);
 
@@ -252,13 +268,13 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        //JanelaConsultaCliente janela = new JanelaConsultaCliente(this, true);
-        //janela.setVisible(true);
+        ConsultaCliente janela = new ConsultaCliente(this, true);
+        janela.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        //CadastroCliente janela = new CadastroCliente(this, true);
-        //janela.setVisible(true);
+        CadastroCliente janela = new CadastroCliente(this, true);
+        janela.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -300,8 +316,10 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;

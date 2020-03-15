@@ -50,9 +50,8 @@ public class CadastroProduto extends javax.swing.JDialog {
         DefaultTableModel modelo = (DefaultTableModel) jtabela_fornecedor.getModel();
         String[] linha = new String[3];
         for (Produto_fornecedor fornecedor : produto.getFornecedor()){
-            linha[0] = fornecedor.getFornecedor().getId()+"";
-            linha[1] = fornecedor.getFornecedor().getCnpj();
-            linha[2] = fornecedor.getFornecedor().getRazao();
+            linha[0] = fornecedor.getFornecedor().getCnpj();
+            linha[1] = fornecedor.getFornecedor().getRazao();
             modelo.addRow(linha);
         }
         
@@ -93,50 +92,50 @@ public class CadastroProduto extends javax.swing.JDialog {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados do Produto"));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("CÓDIGO DE BARRAS");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("PREÇO");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("ESTOQUE");
 
-        jdescricao.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jdescricao.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jdescricao.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jdescricaoKeyPressed(evt);
             }
         });
 
-        jpreco.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jpreco.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jpreco.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jprecoKeyPressed(evt);
             }
         });
 
-        jestoque.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jestoque.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jestoque.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jestoqueKeyPressed(evt);
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("DESCRIÇÃO");
 
-        jcodigo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jcodigo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jcodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jcodigoKeyPressed(evt);
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("MARCA");
 
-        jmarca.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jmarca.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -211,13 +210,13 @@ public class CadastroProduto extends javax.swing.JDialog {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "FORNECEDORES", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 16))); // NOI18N
 
-        jtabela_fornecedor.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jtabela_fornecedor.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jtabela_fornecedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Código", "Razão"
+                "CNPJ", "RAZÃO"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -228,7 +227,7 @@ public class CadastroProduto extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jtabela_fornecedor.setRowHeight(25);
+        jtabela_fornecedor.setRowHeight(30);
         jtabela_fornecedor.getTableHeader().setReorderingAllowed(false);
         jtabela_fornecedor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -279,14 +278,14 @@ public class CadastroProduto extends javax.swing.JDialog {
                     .addComponent(jbutaoexcluir)
                     .addComponent(jbutaobuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 204));
         jPanel3.setPreferredSize(new java.awt.Dimension(100, 50));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 32)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Cadastro de Produto");
 
@@ -294,17 +293,16 @@ public class CadastroProduto extends javax.swing.JDialog {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(169, 169, 169)
                 .addComponent(jLabel6)
-                .addGap(213, 213, 213))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -440,7 +438,7 @@ public class CadastroProduto extends javax.swing.JDialog {
                 profor.setProduto(produto);
                 this.fornecedores.add(profor);
                 String[] linha = new String[2];
-                linha[0] = fornecedor.getId()+"";
+                linha[0] = fornecedor.getCnpj()+"";
                 linha[1] = fornecedor.getRazao();
                 modelo.addRow(linha);
             }
@@ -456,34 +454,38 @@ public class CadastroProduto extends javax.swing.JDialog {
         return false;
     }
     private void salvar(){
-        if(this.produto == null){
-            this.produto = new Produto();
-            produto.setCodigobarras(jcodigo.getText());
-            produto.setDescricao(jdescricao.getText());
-            produto.setEstoque(Integer.parseInt(jestoque.getText()));
-            produto.setPreco(Double.parseDouble(jpreco.getText()));
-            produto.setMarca(jmarca.getText());
-            produto.setStatus(Produto.ATIVO);
-            produto.setFornecedor(this.fornecedores);
-            Banco.getBanco().cadastrar(this.produto);
-            JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
-            jbutaosalvar.setEnabled(false);
-            jbutaoexcluir.setEnabled(false);
-            jbutaobuscar.setEnabled(false);
-            jbutaonovo.setEnabled(true);
-            this.produto = null;
-        }else{
-            produto.setCodigobarras(jcodigo.getText());
-            produto.setDescricao(jdescricao.getText());
-            produto.setEstoque(Double.parseDouble(jestoque.getText()));
-            produto.setPreco(Double.parseDouble(jpreco.getText()));
-            produto.setMarca(jmarca.getText());
-            produto.setStatus(Produto.ATIVO);
-            produto.setFornecedor(this.fornecedores);
-            produto.setStatus(Produto.ATIVO);
-            Banco.getBanco().editarProduto(this.produto);
-            JOptionPane.showMessageDialog(null, "Produto alterado com sucesso!");
-            this.dispose();
+        try{
+            if(this.produto == null){
+                this.produto = new Produto();
+                produto.setCodigobarras(jcodigo.getText());
+                produto.setDescricao(jdescricao.getText());
+                produto.setEstoque(Integer.parseInt(jestoque.getText()));
+                produto.setPreco(Double.parseDouble(jpreco.getText()));
+                produto.setMarca(jmarca.getText());
+                produto.setStatus(Produto.ATIVO);
+                produto.setFornecedor(this.fornecedores);
+                Banco.getBanco().cadastrarProduto(this.produto);
+                JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
+                jbutaosalvar.setEnabled(false);
+                jbutaoexcluir.setEnabled(false);
+                jbutaobuscar.setEnabled(false);
+                jbutaonovo.setEnabled(true);
+                this.produto = null;
+            }else{
+                produto.setCodigobarras(jcodigo.getText());
+                produto.setDescricao(jdescricao.getText());
+                produto.setEstoque(Double.parseDouble(jestoque.getText()));
+                produto.setPreco(Double.parseDouble(jpreco.getText()));
+                produto.setMarca(jmarca.getText());
+                produto.setStatus(Produto.ATIVO);
+                produto.setFornecedor(this.fornecedores);
+                produto.setStatus(Produto.ATIVO);
+                Banco.getBanco().editarProduto(this.produto);
+                JOptionPane.showMessageDialog(null, "Produto alterado com sucesso!");
+                this.dispose();
+            }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
     

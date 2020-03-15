@@ -61,23 +61,24 @@ public class VisualizaFornecedor extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("CNPJ");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("RAZÃO SOCIAL");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("ENDEREÇO");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("TELEFONE 1");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("TELEFONE 2");
 
         jrazao.setEditable(false);
-        jrazao.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jrazao.setBackground(new java.awt.Color(255, 255, 255));
+        jrazao.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jrazao.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jrazaoKeyPressed(evt);
@@ -85,12 +86,13 @@ public class VisualizaFornecedor extends javax.swing.JDialog {
         });
 
         jcnpj.setEditable(false);
+        jcnpj.setBackground(new java.awt.Color(255, 255, 255));
         try {
             jcnpj.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jcnpj.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jcnpj.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jcnpj.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jcnpjKeyPressed(evt);
@@ -98,7 +100,8 @@ public class VisualizaFornecedor extends javax.swing.JDialog {
         });
 
         jendereco.setEditable(false);
-        jendereco.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jendereco.setBackground(new java.awt.Color(255, 255, 255));
+        jendereco.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jendereco.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jenderecoKeyPressed(evt);
@@ -106,12 +109,13 @@ public class VisualizaFornecedor extends javax.swing.JDialog {
         });
 
         jtelefone1.setEditable(false);
+        jtelefone1.setBackground(new java.awt.Color(255, 255, 255));
         try {
             jtelefone1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jtelefone1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jtelefone1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jtelefone1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jtelefone1KeyPressed(evt);
@@ -119,23 +123,25 @@ public class VisualizaFornecedor extends javax.swing.JDialog {
         });
 
         jtelefone2.setEditable(false);
+        jtelefone2.setBackground(new java.awt.Color(255, 255, 255));
         try {
             jtelefone2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jtelefone2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jtelefone2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jtelefone2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jtelefone2KeyPressed(evt);
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setText("E-MAIL");
 
         jemail.setEditable(false);
-        jemail.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jemail.setBackground(new java.awt.Color(255, 255, 255));
+        jemail.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jemail.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jemailKeyPressed(evt);
@@ -151,14 +157,6 @@ public class VisualizaFornecedor extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jendereco)
                     .addComponent(jrazao)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jcnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel6))
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
@@ -167,7 +165,15 @@ public class VisualizaFornecedor extends javax.swing.JDialog {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtelefone2, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)))
-                    .addComponent(jemail))
+                    .addComponent(jemail)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel6)
+                            .addComponent(jcnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -203,7 +209,7 @@ public class VisualizaFornecedor extends javax.swing.JDialog {
         jPanel2.setBackground(new java.awt.Color(0, 0, 204));
         jPanel2.setPreferredSize(new java.awt.Dimension(100, 50));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 32)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Dados do Fornecedor");
 
@@ -212,16 +218,15 @@ public class VisualizaFornecedor extends javax.swing.JDialog {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(168, 168, 168)
+                .addGap(125, 125, 125)
                 .addComponent(jLabel7)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel7)
-                .addContainerGap())
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

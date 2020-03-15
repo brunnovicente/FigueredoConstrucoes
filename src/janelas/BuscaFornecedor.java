@@ -50,6 +50,7 @@ public class BuscaFornecedor extends javax.swing.JDialog {
     private void adicionarVenda(){
         Fornecedor f = this.lista.get(jtabela.getSelectedRow());
         this.fornecedor.setId(f.getId());
+        this.fornecedor.setCnpj(f.getCnpj());
         this.fornecedor.setRazao(f.getRazao());
         this.fornecedor.setEndereco(f.getEmail());
         this.fornecedor.setEmail(f.getEmail());
@@ -99,24 +100,24 @@ public class BuscaFornecedor extends javax.swing.JDialog {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados da Busca"));
 
-        jtabela.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jtabela.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jtabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "COD", "CNPJ", "RAZÃO SOCIAL"
+                "CNPJ", "RAZÃO SOCIAL"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jtabela.setRowHeight(30);
+        jtabela.setRowHeight(35);
         jtabela.getTableHeader().setReorderingAllowed(false);
         jtabela.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -126,17 +127,15 @@ public class BuscaFornecedor extends javax.swing.JDialog {
         jScrollPane1.setViewportView(jtabela);
         if (jtabela.getColumnModel().getColumnCount() > 0) {
             jtabela.getColumnModel().getColumn(0).setResizable(false);
-            jtabela.getColumnModel().getColumn(0).setPreferredWidth(5);
+            jtabela.getColumnModel().getColumn(0).setPreferredWidth(100);
             jtabela.getColumnModel().getColumn(1).setResizable(false);
-            jtabela.getColumnModel().getColumn(1).setPreferredWidth(100);
-            jtabela.getColumnModel().getColumn(2).setResizable(false);
-            jtabela.getColumnModel().getColumn(2).setPreferredWidth(350);
+            jtabela.getColumnModel().getColumn(1).setPreferredWidth(350);
         }
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Buscar");
 
-        jchave.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jchave.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jchave.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jchaveKeyPressed(evt);
@@ -157,7 +156,7 @@ public class BuscaFornecedor extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -193,7 +192,7 @@ public class BuscaFornecedor extends javax.swing.JDialog {
         jPanel2.setForeground(new java.awt.Color(0, 0, 204));
         jPanel2.setPreferredSize(new java.awt.Dimension(623, 50));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 32)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Busca Fornecedor");
 
@@ -201,17 +200,16 @@ public class BuscaFornecedor extends javax.swing.JDialog {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(161, 161, 161)
                 .addComponent(jLabel2)
-                .addGap(199, 199, 199))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -225,7 +223,7 @@ public class BuscaFornecedor extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton2))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

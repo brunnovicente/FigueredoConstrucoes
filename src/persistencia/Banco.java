@@ -196,6 +196,24 @@ public class Banco {
         this.fecharInstancia();
     }
     
+    public void cadastrarProduto(Produto produto) throws Exception{
+        if(produto.getEstoque() < 0){
+            throw new Exception("O Estoque não pode ser negativo.");
+        } if(produto.getPreco() < 0){
+            throw new Exception("O Preço não pode ser negativo.");
+        }
+        
+        List<Produto> p = this.consultaProduto(produto.getCodigobarras());
+        if(!p.isEmpty()){
+            throw new Exception("Já existe produto com o código de barra fornecido.");
+        }
+        this.abrirInstancia();
+        this.em.getTransaction().begin();
+        this.em.persist(produto);
+        this.em.getTransaction().commit();
+        this.fecharInstancia();
+    }
+    
     public void editarUsuario(Usuario usuario){
         this.abrirInstancia();
         this.em.getTransaction().begin();
@@ -231,7 +249,7 @@ public class Banco {
         Query res = em.createQuery("SELECT "
                 + "p "
                 + "FROM Produto as p "
-                + "WHERE (p.descricao LIKE '%"+chave+"%' OR p.codigobarras = '"+chave+"')AND p.status = 1 ORDER BY p.descricao");
+                + "WHERE (p.descricao LIKE '%"+chave+"%' OR p.codigobarras = '"+chave+"')AND p.status = "+Produto.ATIVO+" ORDER BY p.descricao");
         lista = res.getResultList();
         
         em.clear();
@@ -257,6 +275,23 @@ public class Banco {
         return lista;
     }
     
+    public List<Cliente> consultaCliente(String nome){
+        this.abrirInstancia();
+        em = factory.createEntityManager();
+        List<Cliente> lista = null;
+
+        Query res = em.createQuery("SELECT "
+                + "c "
+                + "FROM Cliente as c "
+                + "WHERE c.nome LIKE '%"+nome+"%' AND c.status = "+Cliente.ATIVO+" AND cpf <> '000.000.000-00' ORDER BY c.nome");
+        lista = res.getResultList();
+        
+        em.clear();
+        em.close();
+        this.fecharInstancia();
+        return lista;
+    }
+    
     //FUNÇÕES DE EDIÇÃO
     public void editarProduto(Produto produto){
         this.abrirInstancia();
@@ -264,6 +299,7 @@ public class Banco {
         this.em.merge(produto);
         this.em.getTransaction().commit();
         this.fecharInstancia();
+        this.limparProdutoFornecedor();
     }
     
     public void editarFornecedor(Fornecedor fornecedor){
@@ -271,6 +307,26 @@ public class Banco {
         this.em.getTransaction().begin();
         this.em.merge(fornecedor);
         this.em.getTransaction().commit();
+        this.fecharInstancia();
+    }
+    
+    public void editarCliente(Cliente cliente){
+        this.abrirInstancia();
+        this.em.getTransaction().begin();
+        this.em.merge(cliente);
+        this.em.getTransaction().commit();
+        this.fecharInstancia();
+    }
+    
+    //FUNÇÃO DE EXCLUSÃO
+    public void limparProdutoFornecedor(){
+        this.abrirInstancia();
+        em.getTransaction().begin();
+        
+        Query query = em.createNativeQuery("DELETE FROM produto_fornecedor WHERE produto IS NULL");
+        query.executeUpdate();
+        
+        em.getTransaction().commit();        
         this.fecharInstancia();
     }
     
