@@ -23,6 +23,7 @@ public class ProcessoProduto extends Thread {
     private List<Produto> produtos;
     private String chave;
     private List<Produto> lista;
+    private boolean viva;
    
     public ProcessoProduto(JTable tabela, String chave, List<Produto> lista) {
         this.tabela = tabela;
@@ -33,8 +34,10 @@ public class ProcessoProduto extends Thread {
     
     @Override
     public void run() {
+        this.viva = true;
         this.produtos = Banco.getBanco().consultaProduto(this.chave);
         this.preencherTabela();
+        this.viva = false;
         
     }//Fim do Run
     
@@ -44,8 +47,8 @@ public class ProcessoProduto extends Thread {
             //DecimalFormat df = new DecimalFormat("#,###.00");
             DecimalFormat df = new DecimalFormat("R$ ###,##0.00");
             String[] linha = new String[4];
-            linha[0] = produto.getCodigobarras();
-            linha[1] = produto.getDescricao();
+            linha[0] = produto.getDescricao();
+            linha[1] = produto.getMarca();
             linha[2] = df.format(produto.getPreco());
             linha[3] = produto.getEstoque()+"";
 
@@ -55,7 +58,9 @@ public class ProcessoProduto extends Thread {
     }//Fim Busca CHave
     
     
-            
+    public boolean taViva(){
+        return viva;
+    }        
     
 
 }

@@ -8,6 +8,8 @@ package janelas;
 import entidades.Fornecedor;
 import entidades.Produto;
 import java.awt.event.KeyEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import persistencia.Banco;
 
@@ -123,7 +125,7 @@ public class CadastroFornecedor extends javax.swing.JDialog {
         });
 
         try {
-            jtelefone1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
+            jtelefone1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -135,7 +137,7 @@ public class CadastroFornecedor extends javax.swing.JDialog {
         });
 
         try {
-            jtelefone2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
+            jtelefone2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -356,33 +358,39 @@ public class CadastroFornecedor extends javax.swing.JDialog {
     
     
     private void salvar(){
-        if(this.fornecedor == null){
-            Fornecedor fornecedor = new Fornecedor();
-            fornecedor.setCnpj(jcnpj.getText());
-            fornecedor.setRazao(jrazao.getText());
-            fornecedor.setEmail(jemail.getText());
-            fornecedor.setEndereco(jendereco.getText());
-            fornecedor.setTelefone1(jtelefone1.getText());
-            fornecedor.setTelefone2(jtelefone2.getText());
-            fornecedor.setStatus(Fornecedor.ATIVO);
-            Banco.getBanco().cadastrar(fornecedor);
-            JOptionPane.showMessageDialog(null, "Fornecedor Cadastrado com sucesso!");
-            jbutaosalvar.setEnabled(false);
-            jbutaonovo.setEnabled(true);
-            jbutaonovo.requestFocus();
-        }else{
-            this.fornecedor.setCnpj(jcnpj.getText());
-            this.fornecedor.setRazao(jrazao.getText());
-            this.fornecedor.setEmail(jemail.getText());
-            this.fornecedor.setEndereco(jendereco.getText());
-            this.fornecedor.setTelefone1(jtelefone1.getText());
-            this.fornecedor.setTelefone2(jtelefone2.getText());
-            this.fornecedor.setEmail(jemail.getText());
-            Banco.getBanco().editarFornecedor(this.fornecedor);
-            JOptionPane.showMessageDialog(null, "Fornecedor alterado com sucesso!");
-            this.dispose();
+        try {
+            if(this.fornecedor == null){
+                Fornecedor fornecedor = new Fornecedor();
+                fornecedor.setCnpj(jcnpj.getText());
+                fornecedor.setRazao(jrazao.getText());
+                fornecedor.setEmail(jemail.getText());
+                fornecedor.setEndereco(jendereco.getText());
+                fornecedor.setTelefone1(jtelefone1.getText());
+                fornecedor.setTelefone2(jtelefone2.getText());
+                fornecedor.setStatus(Fornecedor.ATIVO);
+
+                    Banco.getBanco().cadastrarFornecedor(fornecedor);
+
+                JOptionPane.showMessageDialog(null, "Fornecedor Cadastrado com sucesso!");
+                jbutaosalvar.setEnabled(false);
+                jbutaonovo.setEnabled(true);
+                jbutaonovo.requestFocus();
+            }else{
+                this.fornecedor.setCnpj(jcnpj.getText());
+                this.fornecedor.setRazao(jrazao.getText());
+                this.fornecedor.setEmail(jemail.getText());
+                this.fornecedor.setEndereco(jendereco.getText());
+                this.fornecedor.setTelefone1(jtelefone1.getText());
+                this.fornecedor.setTelefone2(jtelefone2.getText());
+                this.fornecedor.setEmail(jemail.getText());
+                Banco.getBanco().editarFornecedor(this.fornecedor);
+                JOptionPane.showMessageDialog(null, "Fornecedor alterado com sucesso!");
+                this.dispose();
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-    }
+    }//Fim do Salvar
 
     private void novo(){
         jcnpj.setText("");

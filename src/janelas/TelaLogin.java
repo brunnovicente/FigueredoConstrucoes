@@ -274,12 +274,7 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jloginActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        boolean entra = login();
-        if(entra){
-            JanelaPrincipal janela = new JanelaPrincipal();
-            janela.setVisible(true);
-            this.dispose();
-        }
+        this.login();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -295,11 +290,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void jsenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jsenhaKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            if(login()){
-                JanelaPrincipal janela = new JanelaPrincipal();
-                janela.setVisible(true);
-                this.dispose();
-            }
+            this.login();
         }
     }//GEN-LAST:event_jsenhaKeyPressed
 
@@ -320,15 +311,24 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
     
     
-    private boolean login(){
-        String nome = jlogin.getText();
+    private void login(){
+        /*String nome = jlogin.getText();
         String senha = String.valueOf(jsenha.getPassword());
         try {
             return Banco.getBanco().fazerLogin(nome, senha);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-        return false;
+        return false;*/
+        String login = jlogin.getText();
+        String senha = String.valueOf(jsenha.getPassword());
+          
+         
+        JanelaBarra janela = new JanelaBarra(this,login,senha);
+        janela.setVisible(true);
+         
+        this.setVisible(false);
+        
     }
     
     

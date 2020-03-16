@@ -44,8 +44,8 @@ public class ConsultaProdutos extends javax.swing.JDialog {
         //produto = new Produto();
         this.setLocationRelativeTo(null);
 
-        this.buscarProduto();
-        this.jChave.requestFocus();
+        //this.buscarProduto();
+        this.jchave.requestFocus();
         //jbutaoExcluir.setVisible(false);
         //jTabelaPesquisa.setAutoCreateRowSorter(true);
     }
@@ -59,7 +59,7 @@ public class ConsultaProdutos extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
 
         //this.buscarProduto();
-        this.jChave.requestFocus();
+        this.jchave.requestFocus();
         //jbutaoExcluir.setVisible(false);
         jTabelaPesquisa.setAutoCreateRowSorter(true);
         jbutaoEditar.setVisible(false);
@@ -91,7 +91,7 @@ public class ConsultaProdutos extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jChave = new javax.swing.JTextField();
+        jchave = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -132,7 +132,7 @@ public class ConsultaProdutos extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Código de Barras", "Descrição", "Preço", "Estoque"
+                "Descrição", "Marca", "Preço", "Estoque"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -166,9 +166,9 @@ public class ConsultaProdutos extends javax.swing.JDialog {
         jScrollPane1.setViewportView(jTabelaPesquisa);
         if (jTabelaPesquisa.getColumnModel().getColumnCount() > 0) {
             jTabelaPesquisa.getColumnModel().getColumn(0).setResizable(false);
-            jTabelaPesquisa.getColumnModel().getColumn(0).setPreferredWidth(100);
+            jTabelaPesquisa.getColumnModel().getColumn(0).setPreferredWidth(400);
             jTabelaPesquisa.getColumnModel().getColumn(1).setResizable(false);
-            jTabelaPesquisa.getColumnModel().getColumn(1).setPreferredWidth(400);
+            jTabelaPesquisa.getColumnModel().getColumn(1).setPreferredWidth(250);
             jTabelaPesquisa.getColumnModel().getColumn(2).setResizable(false);
             jTabelaPesquisa.getColumnModel().getColumn(2).setPreferredWidth(50);
             jTabelaPesquisa.getColumnModel().getColumn(3).setResizable(false);
@@ -242,17 +242,17 @@ public class ConsultaProdutos extends javax.swing.JDialog {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Digite o nome do produto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 16))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Digite o nome do produto ou Código de Barras", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 16))); // NOI18N
 
-        jChave.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jChave.addActionListener(new java.awt.event.ActionListener() {
+        jchave.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jchave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jChaveActionPerformed(evt);
+                jchaveActionPerformed(evt);
             }
         });
-        jChave.addKeyListener(new java.awt.event.KeyAdapter() {
+        jchave.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jChaveKeyPressed(evt);
+                jchaveKeyPressed(evt);
             }
         });
 
@@ -269,7 +269,7 @@ public class ConsultaProdutos extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jChave)
+                .addComponent(jchave)
                 .addGap(10, 10, 10)
                 .addComponent(jButton7)
                 .addContainerGap())
@@ -280,7 +280,7 @@ public class ConsultaProdutos extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton7)
-                    .addComponent(jChave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jchave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -365,7 +365,7 @@ public class ConsultaProdutos extends javax.swing.JDialog {
         
     }//GEN-LAST:event_jTabelaPesquisaKeyPressed
 
-    private void jChaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jChaveKeyPressed
+    private void jchaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jchaveKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
             this.buscarProduto();
         }else if(evt.getKeyCode() == KeyEvent.VK_UP || evt.getKeyCode() == KeyEvent.VK_DOWN){
@@ -373,11 +373,11 @@ public class ConsultaProdutos extends javax.swing.JDialog {
         }/*else{
             this.buscarProduto();
         }*/
-    }//GEN-LAST:event_jChaveKeyPressed
+    }//GEN-LAST:event_jchaveKeyPressed
 
-    private void jChaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jChaveActionPerformed
+    private void jchaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchaveActionPerformed
         
-    }//GEN-LAST:event_jChaveActionPerformed
+    }//GEN-LAST:event_jchaveActionPerformed
 
     private void jbutaoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbutaoEditarActionPerformed
         this.editar();
@@ -409,9 +409,11 @@ public class ConsultaProdutos extends javax.swing.JDialog {
     private void buscarProduto(){
         this.limparTabelas();
         this.lista = new ArrayList<>();
-        ProcessoProduto busca = new ProcessoProduto(jTabelaPesquisa,jChave.getText(), this.lista);
-        busca.start();
-        jChave.requestFocus();
+        JanelaBarraBusca janela = new JanelaBarraBusca(pai, jTabelaPesquisa, jchave.getText(), lista);
+        janela.setVisible(true);
+        //ProcessoProduto busca = new ProcessoProduto(jTabelaPesquisa,jChave.getText(), this.lista);
+        //busca.start();
+        jchave.requestFocus();
     }
      
     private void editar(){
@@ -424,7 +426,11 @@ public class ConsultaProdutos extends javax.swing.JDialog {
         int item = jTabelaPesquisa.getSelectedRow();
         Produto p = this.lista.get(item);
         p.setStatus(Produto.DESATIVADO);
-        Banco.getBanco().editarProduto(p);
+        try {
+            Banco.getBanco().editarProduto(p);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
     }
       
     private void limparTabelas(){
@@ -489,7 +495,6 @@ public class ConsultaProdutos extends javax.swing.JDialog {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton7;
-    private javax.swing.JTextField jChave;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -502,5 +507,6 @@ public class ConsultaProdutos extends javax.swing.JDialog {
     private javax.swing.JTable jTable2;
     private javax.swing.JButton jbutaoEditar;
     private javax.swing.JButton jbutaoExcluir;
+    private javax.swing.JTextField jchave;
     // End of variables declaration//GEN-END:variables
 }

@@ -196,6 +196,19 @@ public class Banco {
         this.fecharInstancia();
     }
     
+    public void cadastrarFornecedor(Fornecedor fornecedor) throws Exception{
+        List<Fornecedor> lista = this.consultaFornecedor(fornecedor.getCnpj());
+        
+        if(!lista.isEmpty()){
+            throw new Exception("O fornecedor "+lista.get(0).getRazao().toUpperCase()+" já possui o CNPJ "+fornecedor.getCnpj()+".");
+        }        
+        this.abrirInstancia();
+        this.em.getTransaction().begin();
+        this.em.persist(fornecedor);
+        this.em.getTransaction().commit();
+        this.fecharInstancia();
+    }
+    
     public void cadastrarProduto(Produto produto) throws Exception{
         if(produto.getEstoque() < 0){
             throw new Exception("O Estoque não pode ser negativo.");
@@ -205,7 +218,7 @@ public class Banco {
         
         List<Produto> p = this.consultaProduto(produto.getCodigobarras());
         if(!p.isEmpty()){
-            throw new Exception("Já existe produto com o código de barra fornecido.");
+            throw new Exception("O produto "+p.get(0).getDescricao().toUpperCase()+" possui o código de barras '"+p.get(0).getCodigobarras()+"'");
         }
         this.abrirInstancia();
         this.em.getTransaction().begin();
@@ -293,7 +306,19 @@ public class Banco {
     }
     
     //FUNÇÕES DE EDIÇÃO
-    public void editarProduto(Produto produto){
+    public void editarProduto(Produto produto) throws Exception{
+        
+        if(produto.getEstoque() < 0){
+            throw new Exception("O Estoque não pode ser negativo.");
+        } if(produto.getPreco() < 0){
+            throw new Exception("O Preço não pode ser negativo.");
+        }
+        
+        List<Produto> p = this.consultaProduto(produto.getCodigobarras());
+        if(!p.isEmpty()){
+            throw new Exception("O produto "+p.get(0).getDescricao().toUpperCase()+" possui o código de barras '"+p.get(0).getCodigobarras()+"'");
+        }
+        
         this.abrirInstancia();
         this.em.getTransaction().begin();
         this.em.merge(produto);
