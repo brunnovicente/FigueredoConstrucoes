@@ -5,6 +5,7 @@
  */
 package entidades;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -28,6 +29,10 @@ public class Venda {
     public static final int ATIVO = 1;
     public static final int DESATIVADO = 0;
     
+    public static final String cartao = "Cartão";
+    public static final String dinheiro = "Dinheiro";
+    public static final String pendente = "Pendente";
+    
     @Id
     @GeneratedValue
     private int id;
@@ -35,6 +40,7 @@ public class Venda {
     private Date data;
     private double total;
     private int status;
+    private String pagamento;
     
     @ManyToOne 
     @JoinColumn(name = "cliente")
@@ -47,6 +53,10 @@ public class Venda {
     @OneToMany(cascade = (CascadeType.ALL), fetch = FetchType.EAGER)
     @JoinColumn(name = "venda")
     private List<Item> itens;
+    
+    public Venda(){
+        this.itens = new ArrayList<>();
+    }
     
     public int getId() {
         return id;
@@ -102,6 +112,14 @@ public class Venda {
 
     public void setItens(List<Item> itens) {
         this.itens = itens;
+    }
+
+    public String getPagamento() {
+        return pagamento;
+    }
+
+    public void setPagamento(String pagamento) {
+        this.pagamento = pagamento;
     }
         
 }

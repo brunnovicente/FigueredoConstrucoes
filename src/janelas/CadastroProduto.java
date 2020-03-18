@@ -136,6 +136,11 @@ public class CadastroProduto extends javax.swing.JDialog {
         jLabel5.setText("MARCA");
 
         jmarca.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jmarca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jmarcaKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -395,6 +400,12 @@ public class CadastroProduto extends javax.swing.JDialog {
     private void jbutaoexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbutaoexcluirActionPerformed
         this.excluir();
     }//GEN-LAST:event_jbutaoexcluirActionPerformed
+
+    private void jmarcaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jmarcaKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            this.jpreco.requestFocus();
+        }
+    }//GEN-LAST:event_jmarcaKeyPressed
     
     private void novo(){
         jbutaosalvar.setEnabled(true);
@@ -471,6 +482,7 @@ public class CadastroProduto extends javax.swing.JDialog {
                 jbutaobuscar.setEnabled(false);
                 jbutaonovo.setEnabled(true);
                 this.produto = null;
+                this.novo();
             }else{
                 produto.setCodigobarras(jcodigo.getText());
                 produto.setDescricao(jdescricao.getText());

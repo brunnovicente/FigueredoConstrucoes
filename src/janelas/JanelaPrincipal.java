@@ -259,8 +259,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        //JanelaPDV janela = new JanelaPDV(this, true);
-        //janela.setVisible(true);
+        JanelaPDV janela = new JanelaPDV(this, true);
+        janela.setVisible(true);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened

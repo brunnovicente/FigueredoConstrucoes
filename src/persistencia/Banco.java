@@ -271,6 +271,26 @@ public class Banco {
         return lista;
     }
     
+    public Produto consultaProdutoCodigo(String codigo){
+        this.abrirInstancia();
+        em = factory.createEntityManager();
+        List<Produto> lista = null;
+
+        Query res = em.createQuery("SELECT "
+                + "p "
+                + "FROM Produto as p "
+                + "WHERE p.codigobarras = '"+codigo+"' AND p.status = 1");
+        lista = res.getResultList();
+        
+        em.clear();
+        em.close();
+        this.fecharInstancia();
+        if(lista.isEmpty()){
+            return null;
+        }
+        return lista.get(0);
+    }
+    
     public List<Fornecedor> consultaFornecedor(String chave){
         this.abrirInstancia();
         em = factory.createEntityManager();
@@ -315,7 +335,7 @@ public class Banco {
         }
         
         List<Produto> p = this.consultaProduto(produto.getCodigobarras());
-        if(!p.isEmpty()){
+        if(!p.isEmpty() && produto.getId() == 0){
             throw new Exception("O produto "+p.get(0).getDescricao().toUpperCase()+" possui o código de barras '"+p.get(0).getCodigobarras()+"'");
         }
         

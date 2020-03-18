@@ -25,7 +25,7 @@ public class Item {
     @GeneratedValue
     private int id;
     
-    private int quantidade;
+    private double quantidade;
     private double total;
     
     @ManyToOne 
@@ -44,11 +44,11 @@ public class Item {
         this.id = id;
     }
 
-    public int getQuantidade() {
+    public double getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(int quantidade) {
+    public void setQuantidade(double quantidade) {
         this.quantidade = quantidade;
     }
 
