@@ -6,6 +6,7 @@
 package janelas;
 
 import entidades.Venda;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -198,7 +199,9 @@ public class JanelaConcluir extends javax.swing.JDialog {
 
     private void jvalorpagoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jvalorpagoKeyPressed
         // TODO add your handling code here:
-        
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            double digitado = Double.parseDouble(jvalorpago.getText());
+        }
     }//GEN-LAST:event_jvalorpagoKeyPressed
 
 
