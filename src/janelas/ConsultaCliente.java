@@ -32,6 +32,7 @@ public class ConsultaCliente extends javax.swing.JDialog {
     private List<Cliente> lista;
     private JFrame pai;
     private Cliente cliente;
+
     /**
      * Creates new form JanelaConsultaProdutos
      * @param parent
@@ -51,10 +52,11 @@ public class ConsultaCliente extends javax.swing.JDialog {
         jtabela.setAutoCreateRowSorter(true);
         this.buscarCliente();
         this.cliente = null;
+        jbutaoAdd.setVisible(false);
        
     }
     
-    public ConsultaCliente(java.awt.Frame parent, boolean modal, Cliente cliente) {
+    public ConsultaCliente(java.awt.Frame parent, boolean modal, Cliente cliente, String chave) {
         super(parent, modal);
         initComponents();
         
@@ -62,13 +64,18 @@ public class ConsultaCliente extends javax.swing.JDialog {
         //produto = new Produto();
         this.setLocationRelativeTo(null);
 
-        //this.buscarProduto();
+        this.jchave.setText(chave);
         this.jchave.requestFocus();
+        if(!this.jchave.getText().isEmpty()){
+            this.buscarCliente();
+        }
         //jbutaoExcluir.setVisible(false);
-        jtabela.setAutoCreateRowSorter(true);
+        //jtabela.setAutoCreateRowSorter(true);
         this.cliente = cliente;
+        
         jbutaoEditar.setVisible(false);
         jbutaoExcluir.setVisible(false);
+        jbutaoAdd.setVisible(true);
     }
        
 
@@ -96,6 +103,8 @@ public class ConsultaCliente extends javax.swing.JDialog {
         jbutaoExcluir = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jbutaoAdd = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -124,7 +133,6 @@ public class ConsultaCliente extends javax.swing.JDialog {
         jScrollPane3.setViewportView(jTable2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1100, 600));
         setResizable(false);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados dos Clientes"));
@@ -228,7 +236,7 @@ public class ConsultaCliente extends javax.swing.JDialog {
                     .addComponent(jchave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -272,6 +280,22 @@ public class ConsultaCliente extends javax.swing.JDialog {
                 .addGap(0, 11, Short.MAX_VALUE))
         );
 
+        jbutaoAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/ok.png"))); // NOI18N
+        jbutaoAdd.setText("Add");
+        jbutaoAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbutaoAddActionPerformed(evt);
+            }
+        });
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Add.png"))); // NOI18N
+        jButton1.setText("NOVO");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -283,6 +307,10 @@ public class ConsultaCliente extends javax.swing.JDialog {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jbutaoAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
                         .addComponent(jbutaoEditar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbutaoExcluir)))
@@ -296,10 +324,14 @@ public class ConsultaCliente extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jbutaoExcluir)
-                    .addComponent(jbutaoEditar))
-                .addGap(16, 16, 16))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jbutaoEditar)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(jbutaoAdd))))
+                .addContainerGap())
         );
 
         pack();
@@ -325,13 +357,14 @@ public class ConsultaCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_jtabelaMouseClicked
 
     private void jtabelaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtabelaKeyPressed
-//        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-//            if(produto == null){
-//                this.ver();
-//            }else{
-//                this.mandarProdutoPraVenda();
-//            }
-//        }if(evt.getKeyCode() == KeyEvent.VK_DOWN){
+         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            if(this.cliente == null){
+                //this.ver();
+            }else{
+                this.enviarParaVenda();
+            }
+        }
+//         if(evt.getKeyCode() == KeyEvent.VK_DOWN){
 //            int sel = jTabelaPesquisa.getSelectedRow();
 //            //if(sel >= 0){
 //                this.produtoSelecionado(sel+1);
@@ -380,7 +413,36 @@ public class ConsultaCliente extends javax.swing.JDialog {
             this.buscarCliente();
          }
     }//GEN-LAST:event_jbutaoExcluirActionPerformed
+
+    private void jbutaoAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbutaoAddActionPerformed
+        enviarParaVenda();
+    }//GEN-LAST:event_jbutaoAddActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        CadastroCliente cadastro = new CadastroCliente(pai, true);
+        cadastro.setVisible(true);
+        this.buscarCliente();
+    }//GEN-LAST:event_jButton1ActionPerformed
    
+    private void enviarParaVenda(){
+        int i = jtabela.getSelectedRow();
+        Cliente c = this.lista.get(i);
+        this.cliente.setId(c.getId());
+        this.cliente.setNome(c.getNome());
+        this.cliente.setCep(c.getCep());
+        this.cliente.setEndereco(c.getEndereco());
+        this.cliente.setBairro(c.getBairro());
+        this.cliente.setNumero(c.getNumero());
+        this.cliente.setCidade(c.getCidade());
+        this.cliente.setEstado(c.getEstado());
+        this.cliente.setTelefone1(c.getTelefone1());
+        this.cliente.setTelefone2(c.getTelefone2());
+        this.cliente.setEmail(c.getEmail());
+        this.cliente.setStatus(c.getStatus());
+        this.cliente.setCpf(c.getCpf());
+        this.dispose();
+    }
+    
     private void buscarCliente(){
         this.limparTabelas();
         this.lista = new ArrayList<>();
@@ -462,6 +524,7 @@ public class ConsultaCliente extends javax.swing.JDialog {
 //    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -472,6 +535,7 @@ public class ConsultaCliente extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JButton jbutaoAdd;
     private javax.swing.JButton jbutaoEditar;
     private javax.swing.JButton jbutaoExcluir;
     private javax.swing.JTextField jchave;

@@ -51,9 +51,9 @@ public class JanelaConcluir extends javax.swing.JDialog {
         jvalorpago = new javax.swing.JTextField();
         jpagamento = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
-        jtroco = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         jbutao = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jtroco = new javax.swing.JTextField();
 
         jLabel3.setText("jLabel3");
 
@@ -72,7 +72,7 @@ public class JanelaConcluir extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(68, 68, 68)
+                .addGap(38, 38, 38)
                 .addComponent(jLabel6)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -121,18 +121,6 @@ public class JanelaConcluir extends javax.swing.JDialog {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Forma de Pagamento");
 
-        jtroco.setEditable(false);
-        jtroco.setBackground(new java.awt.Color(255, 255, 255));
-        jtroco.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jtroco.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jtrocoKeyPressed(evt);
-            }
-        });
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel5.setText("Troco");
-
         jbutao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/ok.png"))); // NOI18N
         jbutao.setText("OK");
         jbutao.addActionListener(new java.awt.event.ActionListener() {
@@ -141,30 +129,45 @@ public class JanelaConcluir extends javax.swing.JDialog {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setText("Troco");
+
+        jtroco.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jtroco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtrocoActionPerformed(evt);
+            }
+        });
+        jtroco.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtrocoKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(126, 126, 126)
+                .addComponent(jbutao)
+                .addContainerGap(136, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
                     .addComponent(jtotal)
                     .addComponent(jvalorpago)
+                    .addComponent(jpagamento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jtroco)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel4)
                             .addComponent(jLabel2)
                             .addComponent(jLabel5))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jtroco)
-                    .addComponent(jpagamento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(170, 170, 170)
-                .addComponent(jbutao)
-                .addContainerGap(163, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,9 +190,9 @@ public class JanelaConcluir extends javax.swing.JDialog {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jtroco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbutao)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -240,8 +243,12 @@ public class JanelaConcluir extends javax.swing.JDialog {
         this.finalizarVenda();
     }//GEN-LAST:event_jbutaoActionPerformed
 
+    private void jtrocoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtrocoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtrocoActionPerformed
+
     private void jtrocoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtrocoKeyPressed
-        this.finalizarVenda();
+        // TODO add your handling code here:
     }//GEN-LAST:event_jtrocoKeyPressed
 
     

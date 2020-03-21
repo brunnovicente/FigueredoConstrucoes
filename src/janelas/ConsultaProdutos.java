@@ -46,25 +46,31 @@ public class ConsultaProdutos extends javax.swing.JDialog {
 
         //this.buscarProduto();
         this.jchave.requestFocus();
+        jbutaoadd.setVisible(false);
         //jbutaoExcluir.setVisible(false);
         //jTabelaPesquisa.setAutoCreateRowSorter(true);
     }
     
-    public ConsultaProdutos(java.awt.Frame parent, boolean modal, Produto produto) {
+    public ConsultaProdutos(java.awt.Frame parent, boolean modal, Produto produto, String chave) {
         super(parent, modal);
         initComponents();
         
         this.pai = (JFrame) parent;
         //produto = new Produto();
         this.setLocationRelativeTo(null);
-
-        //this.buscarProduto();
-        this.jchave.requestFocus();
-        //jbutaoExcluir.setVisible(false);
-        jTabelaPesquisa.setAutoCreateRowSorter(true);
+        
+        if(!chave.isEmpty()){
+            this.buscarProduto();
+        }
+        jchave.setText(chave);
+        jbutaoExcluir.setVisible(false);
+        //jTabelaPesquisa.setAutoCreateRowSorter(true);
+        jbutaonovo.setVisible(false);
         jbutaoEditar.setVisible(false);
         jbutaoExcluir.setVisible(false);
+        jbutaoadd.setVisible(true);
         this.produto = produto;
+        this.jchave.requestFocus();
     }
     
 
@@ -92,7 +98,8 @@ public class ConsultaProdutos extends javax.swing.JDialog {
         jbutaoExcluir = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jbutaonovo = new javax.swing.JButton();
+        jbutaoadd = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -121,7 +128,6 @@ public class ConsultaProdutos extends javax.swing.JDialog {
         jScrollPane3.setViewportView(jTable2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1100, 600));
         setResizable(false);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados dos Produtos"));
@@ -270,11 +276,19 @@ public class ConsultaProdutos extends javax.swing.JDialog {
                 .addGap(0, 11, Short.MAX_VALUE))
         );
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Add.png"))); // NOI18N
-        jButton1.setText("Novo");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbutaonovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Add.png"))); // NOI18N
+        jbutaonovo.setText("Novo");
+        jbutaonovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbutaonovoActionPerformed(evt);
+            }
+        });
+
+        jbutaoadd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Add.png"))); // NOI18N
+        jbutaoadd.setText("Add");
+        jbutaoadd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbutaoaddActionPerformed(evt);
             }
         });
 
@@ -289,11 +303,13 @@ public class ConsultaProdutos extends javax.swing.JDialog {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jbutaoadd)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbutaoEditar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbutaoExcluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
+                        .addComponent(jbutaonovo)
                         .addGap(8, 8, 8)))
                 .addContainerGap())
         );
@@ -305,10 +321,12 @@ public class ConsultaProdutos extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbutaoExcluir)
-                    .addComponent(jbutaoEditar)
-                    .addComponent(jButton1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jbutaoExcluir)
+                        .addComponent(jbutaoEditar)
+                        .addComponent(jbutaonovo))
+                    .addComponent(jbutaoadd))
                 .addContainerGap())
         );
 
@@ -335,13 +353,14 @@ public class ConsultaProdutos extends javax.swing.JDialog {
     }//GEN-LAST:event_jTabelaPesquisaMouseClicked
 
     private void jTabelaPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTabelaPesquisaKeyPressed
-//        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-//            if(produto == null){
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            if(produto == null){
 //                this.ver();
-//            }else{
-//                this.mandarProdutoPraVenda();
-//            }
-//        }if(evt.getKeyCode() == KeyEvent.VK_DOWN){
+            }else{
+                this.enviarParaVenda();
+            }
+        }
+//            if(evt.getKeyCode() == KeyEvent.VK_DOWN){
 //            int sel = jTabelaPesquisa.getSelectedRow();
 //            //if(sel >= 0){
 //                this.produtoSelecionado(sel+1);
@@ -391,12 +410,31 @@ public class ConsultaProdutos extends javax.swing.JDialog {
          }
     }//GEN-LAST:event_jbutaoExcluirActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbutaonovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbutaonovoActionPerformed
         CadastroProduto cadproduto = new CadastroProduto(this.pai, true);
         cadproduto.setVisible(true);// TODO add your handling code here:
         this.buscarProduto();
-    }//GEN-LAST:event_jButton1ActionPerformed
-   
+    }//GEN-LAST:event_jbutaonovoActionPerformed
+
+    private void jbutaoaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbutaoaddActionPerformed
+        // TODO add your handling code here:
+        this.enviarParaVenda();
+    }//GEN-LAST:event_jbutaoaddActionPerformed
+    
+    private void enviarParaVenda(){
+        int i = jTabelaPesquisa.getSelectedRow();
+        Produto p = this.lista.get(i);
+        this.produto.setId(p.getId());
+        this.produto.setCodigobarras(p.getCodigobarras());
+        this.produto.setDescricao(p.getDescricao());
+        this.produto.setEstoque(p.getEstoque());
+        this.produto.setMarca(p.getMarca());
+        this.produto.setMinimo(p.getMinimo());
+        this.produto.setPreco(p.getPreco());
+        this.produto.setStatus(p.getStatus());
+        this.dispose();
+    }
+    
     private void buscarProduto(){
         this.limparTabelas();
         this.lista = new ArrayList<>();
@@ -484,7 +522,6 @@ public class ConsultaProdutos extends javax.swing.JDialog {
 //    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -498,6 +535,8 @@ public class ConsultaProdutos extends javax.swing.JDialog {
     private javax.swing.JTable jTable2;
     private javax.swing.JButton jbutaoEditar;
     private javax.swing.JButton jbutaoExcluir;
+    private javax.swing.JButton jbutaoadd;
+    private javax.swing.JButton jbutaonovo;
     private javax.swing.JTextField jchave;
     // End of variables declaration//GEN-END:variables
 }

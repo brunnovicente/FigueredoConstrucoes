@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.UnknownHostException;
 import javax.swing.JOptionPane;
 import persistencia.Banco;
 
@@ -556,7 +557,7 @@ public class CadastroCliente extends javax.swing.JDialog {
             //JOptionPane.showMessageDialog(null, logradouro + " " + bairro + " " + cidade + " " + uf);
             
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            JOptionPane.showMessageDialog(null, "Não foi encontrada conexão com a internet!", "CEP", JOptionPane.ERROR_MESSAGE);
         }
     }
     

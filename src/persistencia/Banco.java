@@ -151,7 +151,7 @@ public class Banco {
             Cliente cliente = new Cliente();
             cliente.setCpf("000.000.000-00");
             cliente.setNome("Padrão");
-            cliente.setStatus(Cliente.ATIVO);
+            cliente.setStatus(Cliente.DESATIVADO);
             this.cadastrar(cliente);
             this.clientePadrao();
         }
@@ -310,7 +310,7 @@ public class Banco {
         return lista;
     }
     
-    public List<Cliente> consultaCliente(String nome){
+    public List<Cliente> consultaCliente(String chave){
         this.abrirInstancia();
         em = factory.createEntityManager();
         List<Cliente> lista = null;
@@ -318,7 +318,7 @@ public class Banco {
         Query res = em.createQuery("SELECT "
                 + "c "
                 + "FROM Cliente as c "
-                + "WHERE c.nome LIKE '%"+nome+"%' AND c.status = "+Cliente.ATIVO+" AND cpf <> '000.000.000-00' ORDER BY c.nome");
+                + "WHERE (c.nome LIKE '%"+chave+"%' OR cpf = '"+chave+"') AND c.status = "+Cliente.ATIVO+" ORDER BY c.nome");
         lista = res.getResultList();
         
         em.clear();

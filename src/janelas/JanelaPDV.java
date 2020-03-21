@@ -42,7 +42,7 @@ public class JanelaPDV extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
         this.pai = parent;
-        jusuario.setText(Banco.getUsuarioLogado().getNome());
+        jcpf.setText(Banco.getCliente().getCpf());
         jcliente.setText(Banco.getCliente().getNome());
         jdescricao.setHorizontalAlignment(JTextField.CENTER);
         jsubtotal.setHorizontalAlignment(JTextField.RIGHT);
@@ -80,14 +80,13 @@ public class JanelaPDV extends javax.swing.JDialog {
         jestoque = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jsubtotal = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jusuario = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jcliente = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        jcpf = new javax.swing.JFormattedTextField();
         jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -117,8 +116,9 @@ public class JanelaPDV extends javax.swing.JDialog {
         );
 
         jdescricao.setEditable(false);
-        jdescricao.setBackground(new java.awt.Color(255, 255, 255));
+        jdescricao.setBackground(new java.awt.Color(0, 0, 204));
         jdescricao.setFont(new java.awt.Font("Tahoma", 0, 42)); // NOI18N
+        jdescricao.setForeground(new java.awt.Color(255, 255, 255));
 
         jtabela.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jtabela.setModel(new javax.swing.table.DefaultTableModel(
@@ -162,6 +162,11 @@ public class JanelaPDV extends javax.swing.JDialog {
         });
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/pesquisa2.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel5.setText("Quantidade");
@@ -196,9 +201,6 @@ public class JanelaPDV extends javax.swing.JDialog {
         jsubtotal.setFont(new java.awt.Font("Tahoma", 0, 40)); // NOI18N
         jsubtotal.setForeground(new java.awt.Color(255, 255, 255));
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Salvar.png"))); // NOI18N
-        jButton3.setText("SALVAR");
-
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/ok.png"))); // NOI18N
         jButton4.setText("CONCLUIR");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -207,21 +209,34 @@ public class JanelaPDV extends javax.swing.JDialog {
             }
         });
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cliente e Usuário", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados do Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setText("Usuário");
-
-        jusuario.setEditable(false);
-        jusuario.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel3.setText("CPF");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel4.setText("Cliente");
+        jLabel4.setText("Nome");
 
-        jcliente.setEditable(false);
         jcliente.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/pesquisa2.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        try {
+            jcpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jcpf.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jcpf.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jcpfKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -230,12 +245,12 @@ public class JanelaPDV extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jcpf, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jcliente)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
                 .addContainerGap())
@@ -244,13 +259,15 @@ public class JanelaPDV extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4)
-                        .addComponent(jusuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3))
-                    .addComponent(jButton2))
-                .addContainerGap(13, Short.MAX_VALUE))
+                    .addComponent(jButton2)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jcpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Add.png"))); // NOI18N
@@ -286,8 +303,6 @@ public class JanelaPDV extends javax.swing.JDialog {
                                     .addComponent(jestoque, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel7))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton4))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -340,7 +355,7 @@ public class JanelaPDV extends javax.swing.JDialog {
                                     .addComponent(jpreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jestoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                         .addComponent(jLabel8))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -348,9 +363,7 @@ public class JanelaPDV extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jsubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                .addComponent(jButton4)
                 .addContainerGap())
         );
 
@@ -359,10 +372,13 @@ public class JanelaPDV extends javax.swing.JDialog {
 
     private void jcodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jcodigoKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            this.buscarProduto();
+            this.buscarProdutoPorCodigo();
         }
         if(evt.getKeyCode() == KeyEvent.VK_F12){
             this.concluirVenda();
+        }
+        if(evt.getKeyCode() == KeyEvent.VK_F3){
+            this.buscarCliente();
         }
     }//GEN-LAST:event_jcodigoKeyPressed
 
@@ -382,45 +398,111 @@ public class JanelaPDV extends javax.swing.JDialog {
         // TODO add your handling code here:
         this.concluirVenda();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.buscarCliente();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jcpfKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jcpfKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            this.buscarClientePorCpf();
+        }
+    }//GEN-LAST:event_jcpfKeyPressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.buscarProduto();
+    }//GEN-LAST:event_jButton1ActionPerformed
     
-    private void buscarProduto(){
+    private void buscarProdutoPorCodigo(){
         produto = Banco.getBanco().consultaProdutoCodigo(jcodigo.getText());
-        jestoque.setText(produto.getEstoque()+"");
+        //jestoque.setText(produto.getEstoque()+"");
         jpreco.setText(formato.format(produto.getPreco()));
         jdescricao.setText(produto.getDescricao());
+        
+        //Verificar se o Produto já existe na venda
+        for(Item item : this.venda.getItens()){
+            Produto p = item.getProduto();
+            if(p.getId() == this.produto.getId()){
+                this.produto = p;
+            }
+        }
+        jestoque.setText(produto.getEstoque()+"");
         if(produto != null){
             jquantidade.requestFocus();
         }
     }
     
+    private void buscarProduto(){
+        this.produto = new Produto();
+        ConsultaProdutos janela = new ConsultaProdutos(pai, true, produto, jcodigo.getText());
+        janela.setVisible(true);
+        if(this.produto.getId() > 0){
+            jpreco.setText(formato.format(produto.getPreco()));
+            jdescricao.setText(this.produto.getDescricao());
+            jcodigo.setText(produto.getCodigobarras());
+            //Verificar se o Produto já existe na venda
+            for(Item item : this.venda.getItens()){
+                Produto p = item.getProduto();
+                if(p.getId() == this.produto.getId()){
+                    this.produto = p;
+                }
+            }
+            jestoque.setText(produto.getEstoque()+"");
+            if(produto != null){
+                jquantidade.requestFocus();
+            }
+        }
+    }//Fim Buscar Produto
+    
+    
     private void adicionarItemNaVenda(){
         Item item = new Item();
         double estoque = Double.parseDouble(jquantidade.getText());
-        if(estoque <= this.produto.getEstoque()){
-            item.setProduto(this.produto);
-            item.setVenda(this.venda);
-            item.setQuantidade(Double.parseDouble(jquantidade.getText()));
-            item.setTotal(item.getQuantidade() * produto.getPreco());
-            item.getProduto().setEstoque(item.getProduto().getEstoque() - item.getQuantidade());
-            venda.getItens().add(item);
-            venda.setTotal(this.venda.getTotal()+item.getTotal());
+        if(Double.parseDouble(jquantidade.getText()) <= this.produto.getEstoque()){
+            if(estoque <= this.produto.getEstoque()){
+                item.setProduto(this.produto);
+                item.setVenda(this.venda);
+                item.setQuantidade(Double.parseDouble(jquantidade.getText()));
+                item.setTotal(item.getQuantidade() * produto.getPreco());
+                item.getProduto().setEstoque(item.getProduto().getEstoque() - item.getQuantidade());
+                venda.getItens().add(item);
+                venda.setTotal(this.venda.getTotal()+item.getTotal());
 
-            jdescricao.setText("");
-            jquantidade.setText("1");
-            jpreco.setText("");
-            jestoque.setText("");
-            jcodigo.setText("");
+                jdescricao.setText("");
+                jquantidade.setText("1");
+                jpreco.setText("");
+                jestoque.setText("");
+                jcodigo.setText("");
 
-            jsubtotal.setText(formato.format(venda.getTotal()));
-            this.adicionarItemTabela(item);
-            this.produto = null;
-            this.cliente = Banco.getCliente();
-            jcodigo.requestFocus();
+                jsubtotal.setText(formato.format(venda.getTotal()));
+                this.adicionarItemTabela(item);
+                this.produto = null;
+                this.cliente = Banco.getCliente();
+                jcodigo.requestFocus();
+            }else{
+                JOptionPane.showMessageDialog(null, "A quantidade não pode ser maior que o estoque disponível!","Estoque", JOptionPane.WARNING_MESSAGE);
+            }
         }else{
             JOptionPane.showMessageDialog(null, "A quantidade não pode ser maior que o estoque disponível!","Estoque", JOptionPane.WARNING_MESSAGE);
         }
     }
    
+    /*
+    private boolean verificaEstoqueAdicionado(){
+        for(Item item:this.venda.getItens()){
+            if(item.getProduto().getId() == this.produto.getId()){
+                jestoque.setText(item.getProduto().getEstoque()+"");
+                double qtd = Double.parseDouble(jquantidade.getText());
+                if((item.getProduto().getEstoque() - qtd)<0){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    */
     
     private void adicionarItemTabela(Item item){
 
@@ -457,18 +539,57 @@ public class JanelaPDV extends javax.swing.JDialog {
         jcodigo.requestFocus();
     }
     */
+    private void buscarClientePorCpf(){
+        List<Cliente> c = Banco.getBanco().consultaCliente(jcpf.getText());
+        if(c.size() > 0){
+            this.cliente = c.get(0);
+            jcpf.setText(this.cliente.getCpf());
+            jcliente.setText(this.cliente.getNome());
+            jcodigo.requestFocus();
+            this.venda.setCliente(this.cliente);
+        }else{
+            JOptionPane.showMessageDialog(null, "Cliente não encotrado com CPF "+jcpf.getText(),"Cliente", JOptionPane.WARNING_MESSAGE);
+        }
+    }//Fim Buscar Cliente
+    
+    private void buscarCliente(){
+        this.cliente = new Cliente();
+        String chave = jcliente.getText();
+        if(jcliente.getText().equals("Padrão")){
+            chave = "";
+        }
+        ConsultaCliente janela = new ConsultaCliente(pai, true, cliente, chave);
+        janela.setVisible(true);
+        if(this.cliente.getId() > 0){
+            jcliente.setText(this.cliente.getNome());
+            jcpf.setText(this.cliente.getCpf());
+            this.venda.setCliente(cliente);
+        }else{
+            this.cliente = Banco.getCliente();
+        }
+        jcodigo.requestFocus();
+    }//Fim Buscar Cliente
     
     private void concluirVenda(){
-        this.venda.setData(new Date());
-        this.venda.setStatus(Venda.ATIVO);
-        JanelaConcluir janela = new JanelaConcluir(this.pai, true, this.venda);
-        janela.setVisible(true);
-        this.limparTabela();
-        this.venda = new Venda();
-        venda.setUsuario(Banco.getUsuarioLogado());
-        venda.setCliente(this.cliente);
-        this.lista = new ArrayList();
-        this.cliente = Banco.getCliente();
+        if(!this.venda.getItens().isEmpty()){
+            this.venda.setData(new Date());
+            this.venda.setStatus(Venda.ATIVO);
+            JanelaConcluir janela = new JanelaConcluir(this.pai, true, this.venda);
+            janela.setVisible(true);
+            this.limparTabela();
+            this.venda = new Venda();
+
+            this.lista = new ArrayList();
+            this.cliente = Banco.getCliente();
+            this.jsubtotal.setText("");
+            this.jcliente.setText(this.cliente.getNome());
+            this.jcpf.setText(this.cliente.getCpf());
+            venda.setUsuario(Banco.getUsuarioLogado());
+            venda.setCliente(this.cliente);
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Não há produtos adicionados na venda!","Venda", JOptionPane.WARNING_MESSAGE);
+        }
         jcodigo.requestFocus();
     }
     public void limparTabela(){
@@ -482,7 +603,6 @@ public class JanelaPDV extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
@@ -498,12 +618,12 @@ public class JanelaPDV extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jcliente;
     private javax.swing.JTextField jcodigo;
+    private javax.swing.JFormattedTextField jcpf;
     private javax.swing.JTextField jdescricao;
     private javax.swing.JTextField jestoque;
     private javax.swing.JTextField jpreco;
     private javax.swing.JTextField jquantidade;
     private javax.swing.JTextField jsubtotal;
     private javax.swing.JTable jtabela;
-    private javax.swing.JTextField jusuario;
     // End of variables declaration//GEN-END:variables
 }
