@@ -8,11 +8,8 @@ package janelas.auxiliar;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
-import javax.swing.JTextField;
 
 /**
  *
@@ -33,11 +30,10 @@ public class BarraEntrada extends Thread{
         this.rodar = true;
         this.janela = janela;
         this.iniciando = iniciando;
-        this.iniciando.start();
-        
+        //this.iniciando.start();        
     }
 
-   
+  
     @Override
     public void run(){
         

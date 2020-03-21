@@ -5,45 +5,35 @@
  */
 package janelas;
 
-import entidades.Produto;
 import janelas.auxiliar.BarraBusca;
-import janelas.auxiliar.BarraEntrada;
-import janelas.auxiliar.Iniciando;
-import java.awt.Image;
-import java.awt.Toolkit;
-import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 import persistencia.ProcessoProduto;
 
 /**
  *
- * @author Bruno
+ * @author brunn
  */
 public class JanelaBarraBusca extends javax.swing.JDialog {
-    
     private JFrame janela;
-    
-   
-    public JanelaBarraBusca(JFrame janela, JTable tabela, String chave,List<Produto> produto){
+    /**
+     * Creates new form JanelaBarraBusca
+     */
+    public JanelaBarraBusca(JFrame janela, JTable tabela, String chave,List lista) {
         super(janela, true);
         initComponents();
-        Image icone = Toolkit.getDefaultToolkit().getImage("logo.png");
-        this.setIconImage(icone);
         this.setLocationRelativeTo(null);
         this.janela = janela;
-        
-        ProcessoProduto processo = new ProcessoProduto(tabela, chave, produto);
+
+        ProcessoProduto processo = new ProcessoProduto(tabela, chave, lista);
         jbarra.setValue(10);
-        jtexto.setText("Buscando Produtos...");
+        jtexto.setText("Buscando produtos...");
         BarraBusca barra = new BarraBusca(this, jbarra, jtexto, processo);
         barra.start();
+        
     }
-     
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,13 +43,14 @@ public class JanelaBarraBusca extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jtexto = new javax.swing.JLabel();
         jbarra = new javax.swing.JProgressBar();
+        jtexto = new javax.swing.JLabel();
 
-        setResizable(false);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jtexto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jtexto.setText("Buscando Produtos...");
+        jtexto.setText("Buscando produtos...");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -68,27 +59,25 @@ public class JanelaBarraBusca extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbarra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jtexto)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jbarra, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE))
+                        .addGap(0, 232, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jtexto)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addComponent(jbarra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
     
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JProgressBar jbarra;
     private javax.swing.JLabel jtexto;

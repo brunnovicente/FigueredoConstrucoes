@@ -31,6 +31,7 @@ public class ProcessoCliente extends Thread {
     }
 
     
+    
     @Override
     public void run() {
         this.clientes = Banco.getBanco().consultaCliente(this.chave);

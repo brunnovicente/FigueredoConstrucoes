@@ -30,6 +30,7 @@ public class Iniciando extends Thread{
         this.janelalogin = janelalogin;
     }
     
+    
     @Override
     public void run(){
         vida = true;

@@ -6,6 +6,7 @@
 package entidades;
 
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -26,9 +27,16 @@ public class Cliente {
     @GeneratedValue
     private int id;
     
+    @Column(unique=true)
+    private String cpf;
+    
+    private String cep;
     private String nome;
     private String endereco;
-    private String cpf;
+    private String bairro;
+    private int numero;
+    private String cidade;
+    private String estado;
     private String telefone1;
     private String telefone2;
     private String email;
@@ -97,7 +105,45 @@ public class Cliente {
     public void setStatus(int status) {
         this.status = status;
     }
-    
-    
-    
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public void setEstado(String PI) {
+        this.estado = PI;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+              
 }

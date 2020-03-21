@@ -7,6 +7,11 @@ package janelas;
 
 import entidades.Cliente;
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import javax.swing.JOptionPane;
 import persistencia.Banco;
 
@@ -23,17 +28,15 @@ public class CadastroCliente extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        jbutaonovo.setEnabled(false);
     }
     
     public CadastroCliente(java.awt.Frame parent, boolean modal, Cliente cliente) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        jbutaonovo.setEnabled(false);
         this.cliente = cliente;
         jnome.setText(this.cliente.getNome());
-        jendereco.setText(this.cliente.getEndereco());
+        jcidade.setText(this.cliente.getEndereco());
         jcpf.setText(this.cliente.getCpf());
         jtelefone1.setText(this.cliente.getTelefone1());
         jtelefone2.setText(this.cliente.getTelefone2());
@@ -53,7 +56,7 @@ public class CadastroCliente extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jnome = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jendereco = new javax.swing.JTextField();
+        jcidade = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jcpf = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -62,14 +65,22 @@ public class CadastroCliente extends javax.swing.JDialog {
         jtelefone2 = new javax.swing.JFormattedTextField();
         jLabel6 = new javax.swing.JLabel();
         jemail = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jcep = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jnumero = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jendereco = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jestado = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jbairro = new javax.swing.JTextField();
         jbutaosalvar = new javax.swing.JButton();
-        jbutaonovo = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("CADASTRO DE CLIENTE");
-        setAlwaysOnTop(true);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados do Cliente"));
         jPanel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -85,12 +96,12 @@ public class CadastroCliente extends javax.swing.JDialog {
         });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setText("ENDEREÇO");
+        jLabel2.setText("CEP");
 
-        jendereco.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jendereco.addKeyListener(new java.awt.event.KeyAdapter() {
+        jcidade.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jcidade.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jenderecoKeyPressed(evt);
+                jcidadeKeyPressed(evt);
             }
         });
 
@@ -149,6 +160,63 @@ public class CadastroCliente extends javax.swing.JDialog {
             }
         });
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel8.setText("ENDEREÇO");
+
+        jcep.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jcep.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jcepKeyPressed(evt);
+            }
+        });
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/pesquisa2.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel9.setText("CIDADE");
+
+        jnumero.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jnumero.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jnumeroKeyPressed(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel10.setText("ESTADO");
+
+        jendereco.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jendereco.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jenderecoKeyPressed(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel11.setText("NÚMERO");
+
+        jestado.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jestado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jestadoKeyPressed(evt);
+            }
+        });
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel12.setText("BAIRRO");
+
+        jbairro.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jbairro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jbairroKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -157,27 +225,55 @@ public class CadastroCliente extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jnome)
-                    .addComponent(jendereco)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jcpf, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(45, 45, 45)
                                 .addComponent(jtelefone1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(203, 203, 203)
                                 .addComponent(jLabel4)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jtelefone2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jtelefone2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)))
+                    .addComponent(jemail)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jcidade, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jendereco, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jnumero, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel11)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jestado, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jemail))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jcep, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton1))
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jbairro))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -186,12 +282,36 @@ public class CadastroCliente extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jnome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jnome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addComponent(jcep, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jbairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(21, 21, 21)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jcidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jendereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jendereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jnumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
@@ -205,7 +325,7 @@ public class CadastroCliente extends javax.swing.JDialog {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jbutaosalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Salvar.png"))); // NOI18N
@@ -213,14 +333,6 @@ public class CadastroCliente extends javax.swing.JDialog {
         jbutaosalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbutaosalvarActionPerformed(evt);
-            }
-        });
-
-        jbutaonovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Add.png"))); // NOI18N
-        jbutaonovo.setText("NOVO");
-        jbutaonovo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbutaonovoActionPerformed(evt);
             }
         });
 
@@ -257,8 +369,6 @@ public class CadastroCliente extends javax.swing.JDialog {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jbutaonovo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbutaosalvar))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE))
                 .addContainerGap())
@@ -271,10 +381,8 @@ public class CadastroCliente extends javax.swing.JDialog {
                 .addGap(14, 14, 14)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbutaosalvar)
-                    .addComponent(jbutaonovo))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addComponent(jbutaosalvar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -284,21 +392,17 @@ public class CadastroCliente extends javax.swing.JDialog {
         this.salvar();
     }//GEN-LAST:event_jbutaosalvarActionPerformed
 
-    private void jbutaonovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbutaonovoActionPerformed
-        this.novo();
-    }//GEN-LAST:event_jbutaonovoActionPerformed
-
     private void jnomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jnomeKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            this.jendereco.requestFocus();
+            this.jcep.requestFocus();
         }
     }//GEN-LAST:event_jnomeKeyPressed
 
-    private void jenderecoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jenderecoKeyPressed
+    private void jcidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jcidadeKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            this.jcpf.requestFocus();
+            this.jestado.requestFocus();
         }
-    }//GEN-LAST:event_jenderecoKeyPressed
+    }//GEN-LAST:event_jcidadeKeyPressed
 
     private void jcpfKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jcpfKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
@@ -327,16 +431,53 @@ public class CadastroCliente extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_jemailKeyPressed
+
+    private void jcepKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jcepKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            this.buscarCep(jcep.getText());
+        }
+    }//GEN-LAST:event_jcepKeyPressed
+
+    private void jnumeroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jnumeroKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            this.jcpf.requestFocus();
+        }
+    }//GEN-LAST:event_jnumeroKeyPressed
+
+    private void jenderecoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jenderecoKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            this.jnumero.requestFocus();
+        }
+    }//GEN-LAST:event_jenderecoKeyPressed
+
+    private void jestadoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jestadoKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            this.jendereco.requestFocus();
+        }
+    }//GEN-LAST:event_jestadoKeyPressed
+
+    private void jbairroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jbairroKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            this.jcidade.requestFocus();
+        }
+    }//GEN-LAST:event_jbairroKeyPressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.buscarCep(jcep.getText());
+    }//GEN-LAST:event_jButton1ActionPerformed
     
     private void novo(){
         jnome.setText("");
-        jendereco.setText("");
+        jcidade.setText("");
         jcpf.setText("");
         jtelefone1.setText("");
         jtelefone2.setText("");
         jemail.setText("");
-        jbutaosalvar.setEnabled(true);
-        jbutaonovo.setEnabled(false);
+        jcep.setText("");
+        jestado.setText("");
+        jendereco.setText("");
+        jbairro.setText("");
+        jnumero.setText("");
         jnome.requestFocus();
     }
     
@@ -349,15 +490,19 @@ public class CadastroCliente extends javax.swing.JDialog {
             this.cliente.setTelefone1(jtelefone1.getText());
             this.cliente.setTelefone2(jtelefone2.getText());
             this.cliente.setEmail(jemail.getText());
+            this.cliente.setEstado(jestado.getText());
+            this.cliente.setBairro(jbairro.getText());
+            this.cliente.setCidade(jcidade.getText());
+            this.cliente.setNumero(Integer.parseInt(jnumero.getText()));
+            this.cliente.setCep(jcep.getText());
             this.cliente.setStatus(Cliente.ATIVO);
             Banco.getBanco().cadastrar(cliente);
             JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
-            jbutaosalvar.setEnabled(false);
-            jbutaonovo.setEnabled(true);
+            this.novo();
             this.cliente = null;
         }else{
             this.cliente.setNome(jnome.getText());
-            this.cliente.setEndereco(jendereco.getText());
+            this.cliente.setEndereco(jcidade.getText());
             this.cliente.setCpf(jcpf.getText());
             this.cliente.setTelefone1(jtelefone1.getText());
             this.cliente.setTelefone2(jtelefone2.getText());
@@ -368,23 +513,79 @@ public class CadastroCliente extends javax.swing.JDialog {
         }
     }//Fim do Salvar
     
+    
+    public void buscarCep(String cep) 
+    {
+        String json;        
 
+        try {
+            URL url = new URL("http://viacep.com.br/ws/"+ cep +"/json");
+            URLConnection urlConnection = url.openConnection();
+            InputStream is = urlConnection.getInputStream();
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+
+            StringBuilder jsonSb = new StringBuilder();
+
+            br.lines().forEach(l -> jsonSb.append(l.trim()));
+            json = jsonSb.toString();
+            
+            // JOptionPane.showMessageDialog(null, json);
+            
+            json = json.replaceAll("[{},:]", "");
+            json = json.replaceAll("\"", "\n");                       
+            String array[] = new String[30];
+            array = json.split("\n");
+            
+            // JOptionPane.showMessageDialog(null, array);
+                             
+            String logradouro = array[7];            
+            String bairro = array[15];
+            String cidade = array[19]; 
+            String uf = array[23];
+            
+            jcidade.setText(cidade);
+            jbairro.setText(bairro);
+            jendereco.setText(logradouro);
+            jestado.setText(uf);
+            
+            if(jendereco.getText().isEmpty()){
+                jendereco.requestFocus();
+            }else{
+                jnumero.requestFocus();
+            }
+            //JOptionPane.showMessageDialog(null, logradouro + " " + bairro + " " + cidade + " " + uf);
+            
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JButton jbutaonovo;
+    private javax.swing.JTextField jbairro;
     private javax.swing.JButton jbutaosalvar;
+    private javax.swing.JTextField jcep;
+    private javax.swing.JTextField jcidade;
     private javax.swing.JFormattedTextField jcpf;
     private javax.swing.JTextField jemail;
     private javax.swing.JTextField jendereco;
+    private javax.swing.JTextField jestado;
     private javax.swing.JTextField jnome;
+    private javax.swing.JTextField jnumero;
     private javax.swing.JFormattedTextField jtelefone1;
     private javax.swing.JFormattedTextField jtelefone2;
     // End of variables declaration//GEN-END:variables

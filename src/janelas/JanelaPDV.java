@@ -11,6 +11,7 @@ import entidades.Produto;
 import entidades.Usuario;
 import entidades.Venda;
 import java.awt.event.KeyEvent;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -27,6 +28,7 @@ import persistencia.Banco;
  */
 public class JanelaPDV extends javax.swing.JDialog {
     
+    private DecimalFormat formato = new DecimalFormat("R$ ###,##0.00");
     private java.awt.Frame pai;
     private List<Produto> lista;
     private Produto produto = null;
@@ -384,7 +386,7 @@ public class JanelaPDV extends javax.swing.JDialog {
     private void buscarProduto(){
         produto = Banco.getBanco().consultaProdutoCodigo(jcodigo.getText());
         jestoque.setText(produto.getEstoque()+"");
-        jpreco.setText("R$ "+produto.getPreco());
+        jpreco.setText(formato.format(produto.getPreco()));
         jdescricao.setText(produto.getDescricao());
         if(produto != null){
             jquantidade.requestFocus();
@@ -409,7 +411,7 @@ public class JanelaPDV extends javax.swing.JDialog {
             jestoque.setText("");
             jcodigo.setText("");
 
-            jsubtotal.setText("R$ "+venda.getTotal());
+            jsubtotal.setText(formato.format(venda.getTotal()));
             this.adicionarItemTabela(item);
             this.produto = null;
             this.cliente = Banco.getCliente();
@@ -425,9 +427,9 @@ public class JanelaPDV extends javax.swing.JDialog {
         DefaultTableModel modelo = (DefaultTableModel) jtabela.getModel();
         String[] linha = new String[4];
         linha[0] = item.getProduto().getDescricao();
-        linha[1] = "R$ "+item.getProduto().getPreco();
+        linha[1] = formato.format(item.getProduto().getPreco());
         linha[2] = "" + item.getQuantidade();
-        linha[3] = "R$ "+item.getTotal();
+        linha[3] = formato.format(item.getTotal());
         modelo.addRow(linha);
    
     }
@@ -461,6 +463,13 @@ public class JanelaPDV extends javax.swing.JDialog {
         this.venda.setStatus(Venda.ATIVO);
         JanelaConcluir janela = new JanelaConcluir(this.pai, true, this.venda);
         janela.setVisible(true);
+        this.limparTabela();
+        this.venda = new Venda();
+        venda.setUsuario(Banco.getUsuarioLogado());
+        venda.setCliente(this.cliente);
+        this.lista = new ArrayList();
+        this.cliente = Banco.getCliente();
+        jcodigo.requestFocus();
     }
     public void limparTabela(){
         DefaultTableModel modelo = (DefaultTableModel) jtabela.getModel();

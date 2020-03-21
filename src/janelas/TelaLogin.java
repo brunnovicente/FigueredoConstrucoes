@@ -11,6 +11,7 @@
 package janelas;
 
 
+import janelas.auxiliar.Iniciando;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
@@ -323,7 +324,8 @@ public class TelaLogin extends javax.swing.JFrame {
         String login = jlogin.getText();
         String senha = String.valueOf(jsenha.getPassword());
           
-         
+        //Iniciando iniciando = new Iniciando(this, login, senha);
+        //iniciando.start();
         JanelaBarra janela = new JanelaBarra(this,login,senha);
         janela.setVisible(true);
          

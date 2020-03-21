@@ -5,8 +5,14 @@
  */
 package janelas;
 
+import entidades.Item;
 import entidades.Venda;
 import java.awt.event.KeyEvent;
+import java.text.DecimalFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import persistencia.Banco;
 
 /**
  *
@@ -14,6 +20,7 @@ import java.awt.event.KeyEvent;
  */
 public class JanelaConcluir extends javax.swing.JDialog {
     private Venda venda;
+    private DecimalFormat formato = new DecimalFormat("R$ ###,##0.00");
     /**
      * Creates new form JanelaConcluir
      */
@@ -22,6 +29,8 @@ public class JanelaConcluir extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
         this.venda = venda;
+        jtotal.setText(formato.format(this.venda.getTotal()));
+        jvalorpago.requestFocus();
     }
 
     /**
@@ -35,6 +44,7 @@ public class JanelaConcluir extends javax.swing.JDialog {
 
         jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jtotal = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -53,15 +63,24 @@ public class JanelaConcluir extends javax.swing.JDialog {
         jPanel1.setMinimumSize(new java.awt.Dimension(100, 50));
         jPanel1.setPreferredSize(new java.awt.Dimension(380, 50));
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 32)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Finalizar Venda");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(68, 68, 68)
+                .addComponent(jLabel6)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel6)
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -74,7 +93,6 @@ public class JanelaConcluir extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Valor Pago");
 
-        jvalorpago.setBackground(new java.awt.Color(255, 255, 255));
         jvalorpago.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jvalorpago.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,12 +124,22 @@ public class JanelaConcluir extends javax.swing.JDialog {
         jtroco.setEditable(false);
         jtroco.setBackground(new java.awt.Color(255, 255, 255));
         jtroco.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jtroco.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtrocoKeyPressed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("Troco");
 
         jbutao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/ok.png"))); // NOI18N
         jbutao.setText("OK");
+        jbutao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbutaoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -184,26 +212,63 @@ public class JanelaConcluir extends javax.swing.JDialog {
             if(!jvalorpago.isEnabled()){
                 jvalorpago.setEnabled(true);
             }
+            jvalorpago.requestFocus();
         }
         if(selecionado == 1){
             jvalorpago.setText("R$ "+this.venda.getTotal());
             if(!jvalorpago.isEnabled()){
                 jvalorpago.setEnabled(true);
             }
+            jtroco.setText("R$ 0");
         }
         if(selecionado == 2){
             jvalorpago.setEnabled(false);
-            jvalorpago.setText("0");
+            jvalorpago.setText("R$ 0");
+            jtroco.setText("R$ 0");
         }
     }//GEN-LAST:event_jpagamentoItemStateChanged
 
     private void jvalorpagoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jvalorpagoKeyPressed
         // TODO add your handling code here:
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            double digitado = Double.parseDouble(jvalorpago.getText());
+            double digitado = Double.parseDouble(jvalorpago.getText().replace(",", "."));
+            jtroco.setText(formato.format(digitado - this.venda.getTotal()));
         }
     }//GEN-LAST:event_jvalorpagoKeyPressed
 
+    private void jbutaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbutaoActionPerformed
+        this.finalizarVenda();
+    }//GEN-LAST:event_jbutaoActionPerformed
+
+    private void jtrocoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtrocoKeyPressed
+        this.finalizarVenda();
+    }//GEN-LAST:event_jtrocoKeyPressed
+
+    
+    private void finalizarVenda(){
+        int selecionado = jpagamento.getSelectedIndex();
+        this.venda.setStatus(1);
+        if(selecionado < 2){
+            if(selecionado == 0){
+                this.venda.setPagamento(Venda.dinheiro);
+            }else{
+                this.venda.setPagamento(Venda.cartao);
+            }
+        }else{
+            this.venda.setPagamento(Venda.pendente);
+        }
+        
+        Banco.getBanco().cadastrar(this.venda);
+        for(Item i : this.venda.getItens()){
+            try {
+                Banco.getBanco().editarProduto(i.getProduto());
+            } catch (Exception ex) {
+                Logger.getLogger(JanelaConcluir.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        JOptionPane.showMessageDialog(null, "Venda finalizada com sucesso!", "Vender", JOptionPane.INFORMATION_MESSAGE);
+        this.dispose();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -211,6 +276,7 @@ public class JanelaConcluir extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jbutao;
     private javax.swing.JComboBox jpagamento;

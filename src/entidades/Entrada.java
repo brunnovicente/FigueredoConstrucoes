@@ -37,10 +37,6 @@ public class Entrada {
     @JoinColumn(name = "usuario")
     private Usuario usuario;
     
-    @ManyToOne 
-    @JoinColumn(name = "fornecedor")
-    private Fornecedor fornecedor;
-
     public int getId() {
         return id;
     }
@@ -63,10 +59,6 @@ public class Entrada {
 
     public Usuario getUsuario() {
         return usuario;
-    }
-
-    public Fornecedor getFornecedor() {
-        return fornecedor;
     }
 
     public void setId(int id) {
@@ -92,11 +84,5 @@ public class Entrada {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-
-    public void setFornecedor(Fornecedor fornecedor) {
-        this.fornecedor = fornecedor;
-    }
-    
-    
-    
+   
 }

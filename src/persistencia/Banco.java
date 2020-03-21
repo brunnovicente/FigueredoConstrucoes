@@ -214,6 +214,8 @@ public class Banco {
             throw new Exception("O Estoque não pode ser negativo.");
         } if(produto.getPreco() < 0){
             throw new Exception("O Preço não pode ser negativo.");
+        } if(produto.getMinimo() < 0){
+            throw new Exception("O Estoque Mínimo não pode ser negativo.");
         }
         
         List<Produto> p = this.consultaProduto(produto.getCodigobarras());

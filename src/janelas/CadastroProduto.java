@@ -9,6 +9,11 @@ import entidades.Produto_fornecedor;
 import entidades.Fornecedor;
 import entidades.Produto;
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -78,6 +83,8 @@ public class CadastroProduto extends javax.swing.JDialog {
         jcodigo = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jmarca = new javax.swing.JTextField();
+        jminimo = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
         jbutaosalvar = new javax.swing.JButton();
         jbutaonovo = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -116,6 +123,7 @@ public class CadastroProduto extends javax.swing.JDialog {
         });
 
         jestoque.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jestoque.setPreferredSize(new java.awt.Dimension(12, 35));
         jestoque.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jestoqueKeyPressed(evt);
@@ -142,6 +150,16 @@ public class CadastroProduto extends javax.swing.JDialog {
             }
         });
 
+        jminimo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jminimo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jminimoKeyPressed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel7.setText("ESTOQUE MÍNIMO");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -152,23 +170,27 @@ public class CadastroProduto extends javax.swing.JDialog {
                     .addComponent(jdescricao, javax.swing.GroupLayout.DEFAULT_SIZE, 648, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jmarca)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(18, 18, 18)
+                                .addGap(18, 438, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jmarca)
+                                .addGap(19, 19, 19)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jpreco, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jestoque, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)))
+                            .addComponent(jLabel2)
+                            .addComponent(jpreco, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel4)
-                            .addComponent(jcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jestoque, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(24, 24, 24)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jminimo, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -186,15 +208,20 @@ public class CadastroProduto extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jmarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jpreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jestoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jmarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jpreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jminimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         jbutaosalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Salvar.png"))); // NOI18N
@@ -283,7 +310,7 @@ public class CadastroProduto extends javax.swing.JDialog {
                     .addComponent(jbutaoexcluir)
                     .addComponent(jbutaobuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -378,11 +405,11 @@ public class CadastroProduto extends javax.swing.JDialog {
 
     private void jestoqueKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jestoqueKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            this.jtabela_fornecedor.requestFocus();
+            this.jminimo.requestFocus();
         }
-        if(evt.getKeyCode() == KeyEvent.VK_F3){
-            this.buscaFornecedor();
-        }
+        //if(evt.getKeyCode() == KeyEvent.VK_F3){
+        //    this.buscaFornecedor();
+        //}
     }//GEN-LAST:event_jestoqueKeyPressed
 
     private void jtabela_fornecedorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtabela_fornecedorKeyPressed
@@ -406,6 +433,15 @@ public class CadastroProduto extends javax.swing.JDialog {
             this.jpreco.requestFocus();
         }
     }//GEN-LAST:event_jmarcaKeyPressed
+
+    private void jminimoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jminimoKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            this.jtabela_fornecedor.requestFocus();
+        }
+        if(evt.getKeyCode() == KeyEvent.VK_F3){
+            this.buscaFornecedor();
+        }
+    }//GEN-LAST:event_jminimoKeyPressed
     
     private void novo(){
         jbutaosalvar.setEnabled(true);
@@ -415,6 +451,7 @@ public class CadastroProduto extends javax.swing.JDialog {
         jpreco.setText("");
         jestoque.setText("");
         jmarca.setText("");
+        jminimo.setText("");
         this.produto = null;
         this.fornecedores = new ArrayList();        
         jbutaosalvar.setEnabled(true);
@@ -471,10 +508,11 @@ public class CadastroProduto extends javax.swing.JDialog {
                 produto.setCodigobarras(jcodigo.getText());
                 produto.setDescricao(jdescricao.getText());
                 produto.setEstoque(Integer.parseInt(jestoque.getText()));
-                produto.setPreco(Double.parseDouble(jpreco.getText()));
+                produto.setPreco(Double.parseDouble(jpreco.getText().replace(",", ".")));
                 produto.setMarca(jmarca.getText());
                 produto.setStatus(Produto.ATIVO);
                 produto.setFornecedor(this.fornecedores);
+                produto.setMinimo(Double.parseDouble(jminimo.getText()));
                 Banco.getBanco().cadastrarProduto(this.produto);
                 JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
                 jbutaosalvar.setEnabled(false);
@@ -487,7 +525,7 @@ public class CadastroProduto extends javax.swing.JDialog {
                 produto.setCodigobarras(jcodigo.getText());
                 produto.setDescricao(jdescricao.getText());
                 produto.setEstoque(Double.parseDouble(jestoque.getText()));
-                produto.setPreco(Double.parseDouble(jpreco.getText()));
+                produto.setPreco(Double.parseDouble(jpreco.getText().replace(",", ".")));
                 produto.setMarca(jmarca.getText());
                 produto.setStatus(Produto.ATIVO);
                 produto.setFornecedor(this.fornecedores);
@@ -497,9 +535,15 @@ public class CadastroProduto extends javax.swing.JDialog {
                 this.dispose();
             }
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, ex.getMessage());
+            if(ex.getMessage().contains("For")){
+                JOptionPane.showMessageDialog(null, "Existe algum campo com valor não permito, tais como letras em campus numérico.");
+            }else{
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
         }
     }
+    
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -508,6 +552,7 @@ public class CadastroProduto extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -520,6 +565,7 @@ public class CadastroProduto extends javax.swing.JDialog {
     private javax.swing.JTextField jdescricao;
     private javax.swing.JTextField jestoque;
     private javax.swing.JTextField jmarca;
+    private javax.swing.JTextField jminimo;
     private javax.swing.JTextField jpreco;
     private javax.swing.JTable jtabela_fornecedor;
     // End of variables declaration//GEN-END:variables

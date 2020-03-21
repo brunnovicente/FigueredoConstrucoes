@@ -5,6 +5,7 @@
  */
 package entidades;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -25,8 +26,10 @@ public class Usuario {
     @GeneratedValue
     private int id;
     
-    private String nome;
+    @Column(unique=true)
     private String login;
+    
+    private String nome;
     private String senha;
     private int status;
     private String email;
@@ -78,8 +81,5 @@ public class Usuario {
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    
-            
-    
+  
 }
