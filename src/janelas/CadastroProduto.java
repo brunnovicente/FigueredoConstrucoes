@@ -51,6 +51,7 @@ public class CadastroProduto extends javax.swing.JDialog {
         jestoque.setText(produto.getEstoque()+"");
         jpreco.setText(produto.getPreco()+"");
         jmarca.setText(produto.getMarca());
+        jminimo.setText(produto.getMinimo()+"");
         this.fornecedores = produto.getFornecedor();
         DefaultTableModel modelo = (DefaultTableModel) jtabela_fornecedor.getModel();
         String[] linha = new String[3];
@@ -91,7 +92,6 @@ public class CadastroProduto extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtabela_fornecedor = new javax.swing.JTable();
         jbutaobuscar = new javax.swing.JButton();
-        jbutaoexcluir = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
 
@@ -108,21 +108,21 @@ public class CadastroProduto extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("ESTOQUE");
 
-        jdescricao.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jdescricao.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jdescricao.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jdescricaoKeyPressed(evt);
             }
         });
 
-        jpreco.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jpreco.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jpreco.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jprecoKeyPressed(evt);
             }
         });
 
-        jestoque.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jestoque.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jestoque.setPreferredSize(new java.awt.Dimension(12, 35));
         jestoque.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -133,7 +133,7 @@ public class CadastroProduto extends javax.swing.JDialog {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("DESCRIÇÃO");
 
-        jcodigo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jcodigo.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jcodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jcodigoKeyPressed(evt);
@@ -143,14 +143,15 @@ public class CadastroProduto extends javax.swing.JDialog {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("MARCA");
 
-        jmarca.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jmarca.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jmarca.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jmarcaKeyPressed(evt);
             }
         });
 
-        jminimo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jminimo.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jminimo.setText("3");
         jminimo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jminimoKeyPressed(evt);
@@ -167,12 +168,12 @@ public class CadastroProduto extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jdescricao, javax.swing.GroupLayout.DEFAULT_SIZE, 648, Short.MAX_VALUE)
+                    .addComponent(jdescricao, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
-                                .addGap(18, 438, Short.MAX_VALUE))
+                                .addGap(18, 558, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jmarca)
                                 .addGap(19, 19, 19)))
@@ -274,17 +275,10 @@ public class CadastroProduto extends javax.swing.JDialog {
             jtabela_fornecedor.getColumnModel().getColumn(1).setPreferredWidth(400);
         }
 
-        jbutaobuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/pesquisa2.png"))); // NOI18N
+        jbutaobuscar.setText("...");
         jbutaobuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbutaobuscarActionPerformed(evt);
-            }
-        });
-
-        jbutaoexcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Lixeira2.png"))); // NOI18N
-        jbutaoexcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbutaoexcluirActionPerformed(evt);
             }
         });
 
@@ -295,23 +289,19 @@ public class CadastroProduto extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 648, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jbutaoexcluir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jbutaobuscar)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbutaoexcluir)
-                    .addComponent(jbutaobuscar))
+                .addComponent(jbutaobuscar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 204));
@@ -326,7 +316,7 @@ public class CadastroProduto extends javax.swing.JDialog {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(169, 169, 169)
+                .addGap(235, 235, 235)
                 .addComponent(jLabel6)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -351,7 +341,7 @@ public class CadastroProduto extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbutaosalvar))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -362,8 +352,8 @@ public class CadastroProduto extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbutaosalvar)
                     .addComponent(jbutaonovo))
@@ -424,10 +414,6 @@ public class CadastroProduto extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jtabela_fornecedorKeyPressed
 
-    private void jbutaoexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbutaoexcluirActionPerformed
-        this.excluir();
-    }//GEN-LAST:event_jbutaoexcluirActionPerformed
-
     private void jmarcaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jmarcaKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
             this.jpreco.requestFocus();
@@ -455,7 +441,7 @@ public class CadastroProduto extends javax.swing.JDialog {
         this.produto = null;
         this.fornecedores = new ArrayList();        
         jbutaosalvar.setEnabled(true);
-        jbutaoexcluir.setEnabled(true);
+        //jbutaoexcluir.setEnabled(true);
         jbutaobuscar.setEnabled(true);
         jbutaonovo.setEnabled(false);
         DefaultTableModel modelo = (DefaultTableModel) jtabela_fornecedor.getModel();
@@ -516,7 +502,7 @@ public class CadastroProduto extends javax.swing.JDialog {
                 Banco.getBanco().cadastrarProduto(this.produto);
                 JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
                 jbutaosalvar.setEnabled(false);
-                jbutaoexcluir.setEnabled(false);
+                //jbutaoexcluir.setEnabled(false);
                 jbutaobuscar.setEnabled(false);
                 jbutaonovo.setEnabled(true);
                 this.produto = null;
@@ -527,6 +513,7 @@ public class CadastroProduto extends javax.swing.JDialog {
                 produto.setEstoque(Double.parseDouble(jestoque.getText()));
                 produto.setPreco(Double.parseDouble(jpreco.getText().replace(",", ".")));
                 produto.setMarca(jmarca.getText());
+                produto.setMinimo(Double.parseDouble(jminimo.getText()));
                 produto.setStatus(Produto.ATIVO);
                 produto.setFornecedor(this.fornecedores);
                 produto.setStatus(Produto.ATIVO);
@@ -558,7 +545,6 @@ public class CadastroProduto extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbutaobuscar;
-    private javax.swing.JButton jbutaoexcluir;
     private javax.swing.JButton jbutaonovo;
     private javax.swing.JButton jbutaosalvar;
     private javax.swing.JTextField jcodigo;
