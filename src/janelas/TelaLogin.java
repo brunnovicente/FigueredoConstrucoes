@@ -303,7 +303,8 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosed
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        
+        JanelaRecucperaSenha janela = new JanelaRecucperaSenha(this, true);
+        janela.setVisible(true);
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

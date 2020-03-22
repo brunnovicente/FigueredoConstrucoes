@@ -11,8 +11,11 @@ import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import persistencia.BackupSupremo;
 import persistencia.Banco;
 
 /**
@@ -227,6 +230,11 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/backup.png"))); // NOI18N
         jMenuItem3.setText("FAZER BACKUP");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem3);
 
         jMenuItem11.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
@@ -302,7 +310,48 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         consultafornecedor.setVisible(true);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
-    
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        this.salvarBackup();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void salvarBackup(){
+        JFileChooser arquivo = new JFileChooser();
+        arquivo.setDialogTitle("Realizar Backup");
+        arquivo.setFileFilter(new FileNameExtensionFilter("Arquivo de backup", "sql"));
+        arquivo.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        
+        int result = arquivo.showSaveDialog(null);
+        
+        String caminho = null;
+        
+        if(caminho == null){
+            caminho = "";
+        }else{
+            caminho += "/";
+        }
+
+        //C:\BC\SIAP\mysql\bin
+        BackupSupremo bkp = new BackupSupremo(caminho+"mysql",caminho+"mysqldump","root", "110416", "figueredo");
+        //BackupSupremo bkp = new BackupSupremo("C:\\Users\\Bruno Vicente\\Dropbox\\projetos\\DANIELSIAP\\mysql\\bin\\mysql","C:\\Users\\Bruno Vicente\\Dropbox\\projetos\\DANIELSIAP\\mysql\\bin\\mysqldump","root", "neural", "bancopecas");
+
+        
+        if(result == JFileChooser.CANCEL_OPTION){  
+
+        }   
+        else{  
+          String file = arquivo.getSelectedFile().getAbsolutePath();
+          boolean resultado = bkp.fazerBackup(file);
+          //;FachadaControle.getFachadaControle().backupDB(file+".sql");
+          
+          if(resultado){
+              JOptionPane.showMessageDialog(null, " Backup criado com sucesso! ");
+          }
+          else{
+              JOptionPane.showMessageDialog(null, " Não foi possível criar o Backup! ");
+          }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;

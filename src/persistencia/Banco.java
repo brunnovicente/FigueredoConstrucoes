@@ -126,6 +126,7 @@ public class Banco {
         return lista.get(0);
     }
     
+      
     public boolean fazerLogin(String login, String senha) throws Exception{
         this.gerarDados();
         Usuario user = this.getUsuario(login);

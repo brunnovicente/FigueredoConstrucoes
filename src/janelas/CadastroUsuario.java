@@ -24,7 +24,6 @@ public class CadastroUsuario extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        jbutaonovo.setEnabled(false);
         this.usuario = null;
     }
     
@@ -32,12 +31,10 @@ public class CadastroUsuario extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        jbutaonovo.setEnabled(false);
         this.usuario = usuario;
         jnome.setText(usuario.getNome());
         jlogin.setText(usuario.getLogin());
         jemail.setText(usuario.getEmail());
-        jbutaonovo.setVisible(false);
     }
 
     /**
@@ -61,7 +58,6 @@ public class CadastroUsuario extends javax.swing.JDialog {
         jsenha = new javax.swing.JPasswordField();
         jconfirmasenha = new javax.swing.JPasswordField();
         jbutaosalvar = new javax.swing.JButton();
-        jbutaonovo = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
 
@@ -150,14 +146,6 @@ public class CadastroUsuario extends javax.swing.JDialog {
             }
         });
 
-        jbutaonovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Add.png"))); // NOI18N
-        jbutaonovo.setText("NOVO");
-        jbutaonovo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbutaonovoActionPerformed(evt);
-            }
-        });
-
         jPanel2.setBackground(new java.awt.Color(0, 0, 204));
         jPanel2.setPreferredSize(new java.awt.Dimension(100, 50));
 
@@ -191,8 +179,6 @@ public class CadastroUsuario extends javax.swing.JDialog {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jbutaonovo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbutaosalvar))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE))
                 .addContainerGap())
@@ -205,9 +191,7 @@ public class CadastroUsuario extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbutaosalvar)
-                    .addComponent(jbutaonovo))
+                .addComponent(jbutaosalvar)
                 .addContainerGap())
         );
 
@@ -217,10 +201,6 @@ public class CadastroUsuario extends javax.swing.JDialog {
     private void jbutaosalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbutaosalvarActionPerformed
         this.salvar();
     }//GEN-LAST:event_jbutaosalvarActionPerformed
-
-    private void jbutaonovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbutaonovoActionPerformed
-        this.novo();
-    }//GEN-LAST:event_jbutaonovoActionPerformed
     
     private void salvar(){
         
@@ -238,7 +218,6 @@ public class CadastroUsuario extends javax.swing.JDialog {
                     usuario.setStatus(1);
                     Banco.getBanco().cadastrar(usuario);
                     jbutaosalvar.setEnabled(false);
-                    jbutaonovo.setEnabled(true);
                     JOptionPane.showMessageDialog(null, "Usuario cadastrado com sucesso!");
                 }else{
                     usuario.setNome(jnome.getText());
@@ -250,7 +229,7 @@ public class CadastroUsuario extends javax.swing.JDialog {
                     JOptionPane.showMessageDialog(null, "Usuario modificado com sucesso!");
                     this.dispose();
                 }
-
+                this.dispose();
             }else{
                 JOptionPane.showMessageDialog(null, "Repita a senha no campo 'CONFIRMAÇÃO DA SENHA'!");
             }
@@ -278,7 +257,6 @@ public class CadastroUsuario extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JButton jbutaonovo;
     private javax.swing.JButton jbutaosalvar;
     private javax.swing.JPasswordField jconfirmasenha;
     private javax.swing.JTextField jemail;

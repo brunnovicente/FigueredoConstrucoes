@@ -72,6 +72,9 @@ public class FigueredoConstrucoes {
         
         Banco.getBanco().cadastrar(venda);
         */
+        String senha = "Bruno";
+        System.out.println(senha.charAt(0));
+        
     }
     
     
