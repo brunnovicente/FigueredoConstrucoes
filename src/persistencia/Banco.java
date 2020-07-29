@@ -265,7 +265,7 @@ public class Banco {
         Query res = em.createQuery("SELECT "
                 + "p "
                 + "FROM Produto as p "
-                + "WHERE (p.descricao LIKE '%"+chave+"%' OR p.codigobarras = '"+chave+"')AND p.status = "+Produto.ATIVO+" ORDER BY p.descricao");
+                + "WHERE (p.descricao LIKE '%"+chave+"%' OR p.codigobarra = '"+chave+"')AND p.status = "+Produto.ATIVO+" ORDER BY p.descricao");
         lista = res.getResultList();
         
         em.clear();
@@ -282,7 +282,7 @@ public class Banco {
         Query res = em.createQuery("SELECT "
                 + "p "
                 + "FROM Produto as p "
-                + "WHERE p.codigobarras = '"+codigo+"' AND p.status = 1");
+                + "WHERE p.codigobarra = '"+codigo+"' AND p.status = 1");
         lista = res.getResultList();
         
         em.clear();

@@ -50,17 +50,8 @@ public class CadastroProduto extends javax.swing.JDialog {
         jdescricao.setText(produto.getDescricao());
         jestoque.setText(produto.getEstoque()+"");
         jpreco.setText(produto.getPreco()+"");
-        jmarca.setText(produto.getMarca());
         jminimo.setText(produto.getMinimo()+"");
-        this.fornecedores = produto.getFornecedor();
-        DefaultTableModel modelo = (DefaultTableModel) jtabela_fornecedor.getModel();
-        String[] linha = new String[3];
-        for (Produto_fornecedor fornecedor : produto.getFornecedor()){
-            linha[0] = fornecedor.getFornecedor().getCnpj();
-            linha[1] = fornecedor.getFornecedor().getRazao();
-            modelo.addRow(linha);
-        }
-        
+                
         jcodigo.requestFocus();
     }
 
@@ -82,16 +73,10 @@ public class CadastroProduto extends javax.swing.JDialog {
         jestoque = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jcodigo = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jmarca = new javax.swing.JTextField();
         jminimo = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jbutaosalvar = new javax.swing.JButton();
         jbutaonovo = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtabela_fornecedor = new javax.swing.JTable();
-        jbutaobuscar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
 
@@ -140,16 +125,6 @@ public class CadastroProduto extends javax.swing.JDialog {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel5.setText("MARCA");
-
-        jmarca.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jmarca.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jmarcaKeyPressed(evt);
-            }
-        });
-
         jminimo.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jminimo.setText("3");
         jminimo.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -169,30 +144,25 @@ public class CadastroProduto extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jdescricao, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(18, 558, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jmarca)
-                                .addGap(19, 19, 19)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jpreco, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel4)
-                            .addComponent(jcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jpreco, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jestoque, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(24, 24, 24)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7)
-                                    .addComponent(jminimo, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                    .addComponent(jminimo, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -207,22 +177,20 @@ public class CadastroProduto extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jdescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jmarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jestoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jminimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jpreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jestoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jminimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         jbutaosalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Salvar.png"))); // NOI18N
@@ -240,69 +208,6 @@ public class CadastroProduto extends javax.swing.JDialog {
                 jbutaonovoActionPerformed(evt);
             }
         });
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "FORNECEDORES", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 16))); // NOI18N
-
-        jtabela_fornecedor.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jtabela_fornecedor.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "CNPJ", "RAZÃO"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jtabela_fornecedor.setRowHeight(30);
-        jtabela_fornecedor.getTableHeader().setReorderingAllowed(false);
-        jtabela_fornecedor.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jtabela_fornecedorKeyPressed(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jtabela_fornecedor);
-        if (jtabela_fornecedor.getColumnModel().getColumnCount() > 0) {
-            jtabela_fornecedor.getColumnModel().getColumn(0).setResizable(false);
-            jtabela_fornecedor.getColumnModel().getColumn(0).setPreferredWidth(30);
-            jtabela_fornecedor.getColumnModel().getColumn(1).setResizable(false);
-            jtabela_fornecedor.getColumnModel().getColumn(1).setPreferredWidth(400);
-        }
-
-        jbutaobuscar.setText("...");
-        jbutaobuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbutaobuscarActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jbutaobuscar)))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jbutaobuscar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 204));
         jPanel3.setPreferredSize(new java.awt.Dimension(100, 50));
@@ -340,7 +245,6 @@ public class CadastroProduto extends javax.swing.JDialog {
                         .addComponent(jbutaonovo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbutaosalvar))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -351,8 +255,6 @@ public class CadastroProduto extends javax.swing.JDialog {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbutaosalvar)
@@ -371,10 +273,6 @@ public class CadastroProduto extends javax.swing.JDialog {
         this.novo();
     }//GEN-LAST:event_jbutaonovoActionPerformed
 
-    private void jbutaobuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbutaobuscarActionPerformed
-        this.buscaFornecedor();
-    }//GEN-LAST:event_jbutaobuscarActionPerformed
-
     private void jcodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jcodigoKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
             this.jdescricao.requestFocus();
@@ -382,9 +280,7 @@ public class CadastroProduto extends javax.swing.JDialog {
     }//GEN-LAST:event_jcodigoKeyPressed
 
     private void jdescricaoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jdescricaoKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            this.jmarca.requestFocus();
-        }
+        
     }//GEN-LAST:event_jdescricaoKeyPressed
 
     private void jprecoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jprecoKeyPressed
@@ -402,31 +298,8 @@ public class CadastroProduto extends javax.swing.JDialog {
         //}
     }//GEN-LAST:event_jestoqueKeyPressed
 
-    private void jtabela_fornecedorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtabela_fornecedorKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_DELETE){
-            this.excluir();
-        }
-        if(evt.getKeyCode() == KeyEvent.VK_F3){
-            this.buscaFornecedor();
-        }
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            this.salvar();
-        }
-    }//GEN-LAST:event_jtabela_fornecedorKeyPressed
-
-    private void jmarcaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jmarcaKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            this.jpreco.requestFocus();
-        }
-    }//GEN-LAST:event_jmarcaKeyPressed
-
     private void jminimoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jminimoKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            this.jtabela_fornecedor.requestFocus();
-        }
-        if(evt.getKeyCode() == KeyEvent.VK_F3){
-            this.buscaFornecedor();
-        }
+                
     }//GEN-LAST:event_jminimoKeyPressed
     
     private void novo(){
@@ -436,57 +309,16 @@ public class CadastroProduto extends javax.swing.JDialog {
         jdescricao.setText("");
         jpreco.setText("");
         jestoque.setText("");
-        jmarca.setText("");
         jminimo.setText("");
         this.produto = null;
         this.fornecedores = new ArrayList();        
         jbutaosalvar.setEnabled(true);
         //jbutaoexcluir.setEnabled(true);
-        jbutaobuscar.setEnabled(true);
         jbutaonovo.setEnabled(false);
-        DefaultTableModel modelo = (DefaultTableModel) jtabela_fornecedor.getModel();
-        int tam = modelo.getRowCount();
-        for(int i=0;i<tam;i++){
-            modelo.removeRow(0);
-        }
+        
         jcodigo.requestFocus();
     }
-    private void excluir(){
-        int v = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir esse Fornecedor?", "EXCLUIR FORNECEDOR", JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-        if(v == JOptionPane.YES_OPTION){
-            int i = jtabela_fornecedor.getSelectedRow();
-            this.fornecedores.remove(i);
-            DefaultTableModel modelo = (DefaultTableModel) jtabela_fornecedor.getModel();
-            modelo.removeRow(i);
-        }
-    }
-    private void buscaFornecedor(){
-        Fornecedor fornecedor = new Fornecedor();
-        BuscaFornecedor busca = new BuscaFornecedor(null, true, fornecedor);
-        busca.setVisible(true);
-        if(fornecedor.getId() != 0){
-            if(!verificarFornecedor(fornecedor.getId())){
-                DefaultTableModel modelo = (DefaultTableModel) jtabela_fornecedor.getModel();
-                Produto_fornecedor profor = new Produto_fornecedor();
-                profor.setFornecedor(fornecedor);
-                profor.setProduto(produto);
-                this.fornecedores.add(profor);
-                String[] linha = new String[2];
-                linha[0] = fornecedor.getCnpj()+"";
-                linha[1] = fornecedor.getRazao();
-                modelo.addRow(linha);
-            }
-        }
-        jtabela_fornecedor.requestFocus();
-    }
-    private boolean verificarFornecedor(int id){
-        for (Produto_fornecedor profor : this.fornecedores){
-            if(profor.getFornecedor().getId() == id){
-                return true;
-            }
-        }
-        return false;
-    }
+        
     private void salvar(){
         try{
             if(this.produto == null){
@@ -495,7 +327,6 @@ public class CadastroProduto extends javax.swing.JDialog {
                 produto.setDescricao(jdescricao.getText());
                 produto.setEstoque(Integer.parseInt(jestoque.getText()));
                 produto.setPreco(Double.parseDouble(jpreco.getText().replace(",", ".")));
-                produto.setMarca(jmarca.getText());
                 produto.setStatus(Produto.ATIVO);
                 produto.setFornecedor(this.fornecedores);
                 produto.setMinimo(Double.parseDouble(jminimo.getText()));
@@ -503,7 +334,6 @@ public class CadastroProduto extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
                 jbutaosalvar.setEnabled(false);
                 //jbutaoexcluir.setEnabled(false);
-                jbutaobuscar.setEnabled(false);
                 jbutaonovo.setEnabled(true);
                 this.produto = null;
                 this.novo();
@@ -512,7 +342,6 @@ public class CadastroProduto extends javax.swing.JDialog {
                 produto.setDescricao(jdescricao.getText());
                 produto.setEstoque(Double.parseDouble(jestoque.getText()));
                 produto.setPreco(Double.parseDouble(jpreco.getText().replace(",", ".")));
-                produto.setMarca(jmarca.getText());
                 produto.setMinimo(Double.parseDouble(jminimo.getText()));
                 produto.setStatus(Produto.ATIVO);
                 produto.setFornecedor(this.fornecedores);
@@ -537,22 +366,16 @@ public class CadastroProduto extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton jbutaobuscar;
     private javax.swing.JButton jbutaonovo;
     private javax.swing.JButton jbutaosalvar;
     private javax.swing.JTextField jcodigo;
     private javax.swing.JTextField jdescricao;
     private javax.swing.JTextField jestoque;
-    private javax.swing.JTextField jmarca;
     private javax.swing.JTextField jminimo;
     private javax.swing.JTextField jpreco;
-    private javax.swing.JTable jtabela_fornecedor;
     // End of variables declaration//GEN-END:variables
 }

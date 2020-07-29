@@ -138,11 +138,11 @@ public class ConsultaProdutos extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Descrição", "Marca", "Preço", "Estoque"
+                "Descrição", "Preço", "Estoque"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -174,11 +174,9 @@ public class ConsultaProdutos extends javax.swing.JDialog {
             jTabelaPesquisa.getColumnModel().getColumn(0).setResizable(false);
             jTabelaPesquisa.getColumnModel().getColumn(0).setPreferredWidth(400);
             jTabelaPesquisa.getColumnModel().getColumn(1).setResizable(false);
-            jTabelaPesquisa.getColumnModel().getColumn(1).setPreferredWidth(250);
+            jTabelaPesquisa.getColumnModel().getColumn(1).setPreferredWidth(50);
             jTabelaPesquisa.getColumnModel().getColumn(2).setResizable(false);
             jTabelaPesquisa.getColumnModel().getColumn(2).setPreferredWidth(50);
-            jTabelaPesquisa.getColumnModel().getColumn(3).setResizable(false);
-            jTabelaPesquisa.getColumnModel().getColumn(3).setPreferredWidth(50);
         }
 
         jchave.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
@@ -428,7 +426,6 @@ public class ConsultaProdutos extends javax.swing.JDialog {
         this.produto.setCodigobarras(p.getCodigobarras());
         this.produto.setDescricao(p.getDescricao());
         this.produto.setEstoque(p.getEstoque());
-        this.produto.setMarca(p.getMarca());
         this.produto.setMinimo(p.getMinimo());
         this.produto.setPreco(p.getPreco());
         this.produto.setStatus(p.getStatus());

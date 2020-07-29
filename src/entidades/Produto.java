@@ -34,10 +34,9 @@ public class Produto {
     private int id;
     
     @Column(unique=true)
-    private String codigobarras;
+    private String codigobarra;
     private String descricao;
     private double preco;
-    private String marca;
     private double minimo;
     private double estoque;
     private int status;
@@ -61,7 +60,7 @@ public class Produto {
     }
 
     public String getCodigobarras() {
-        return codigobarras;
+        return codigobarra;
     }
 
     public String getDescricao() {
@@ -71,11 +70,7 @@ public class Produto {
     public double getPreco() {
         return preco;
     }
-
-    public String getMarca() {
-        return marca;
-    }
-
+    
     public double getMinimo() {
         return minimo;
     }
@@ -92,8 +87,8 @@ public class Produto {
         this.id = id;
     }
 
-    public void setCodigobarras(String codigobarras) {
-        this.codigobarras = codigobarras;
+    public void setCodigobarras(String codigobarra) {
+        this.codigobarra = codigobarra;
     }
 
     public void setDescricao(String descricao) {
@@ -103,11 +98,7 @@ public class Produto {
     public void setPreco(double preco) {
         this.preco = preco;
     }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
+       
     public void setMinimo(double minimo) {
         this.minimo = minimo;
     }
@@ -128,6 +119,4 @@ public class Produto {
         this.fornecedor = fornecedor;
     }
 
-    
-    
 }

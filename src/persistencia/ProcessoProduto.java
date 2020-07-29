@@ -48,9 +48,8 @@ public class ProcessoProduto extends Thread {
             DecimalFormat df = new DecimalFormat("R$ ###,##0.00");
             String[] linha = new String[4];
             linha[0] = produto.getDescricao();
-            linha[1] = produto.getMarca();
-            linha[2] = df.format(produto.getPreco());
-            linha[3] = produto.getEstoque()+"";
+            linha[1] = df.format(produto.getPreco());
+            linha[2] = produto.getEstoque()+"";
 
             modelo.addRow(linha);
             this.lista.add(produto);
