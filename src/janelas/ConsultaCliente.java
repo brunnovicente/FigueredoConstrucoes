@@ -327,10 +327,9 @@ public class ConsultaCliente extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jbutaoExcluir)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jbutaoEditar)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jbutaoAdd))))
+                        .addComponent(jButton1)
+                        .addComponent(jbutaoAdd))
+                    .addComponent(jbutaoEditar))
                 .addContainerGap())
         );
 
@@ -343,23 +342,14 @@ public class ConsultaCliente extends javax.swing.JDialog {
 
     private void jtabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtabelaMouseClicked
         if(evt.getClickCount() == 2){
-//            if(produto == null){
-//                //if(!FachadaControle.getFachadaControle().getUsuarioLogado().getTipo().equals(Usuario.TIPO_VENDEDOR)){
-//                    //this.editar();
-//                this.ver();
-//                //}
-//            }else{
-//                this.mandarProdutoPraVenda();
-//            }
-//        }else{
-//            this.produtoSelecionado(this.jTabelaPesquisa.getSelectedRow());
+            this.ver();
         }
     }//GEN-LAST:event_jtabelaMouseClicked
 
     private void jtabelaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtabelaKeyPressed
          if(evt.getKeyCode() == KeyEvent.VK_ENTER){
             if(this.cliente == null){
-                //this.ver();
+                this.ver();
             }else{
                 this.enviarParaVenda();
             }
@@ -471,6 +461,11 @@ public class ConsultaCliente extends javax.swing.JDialog {
         for(int i=0;i<tam;i++){
             model.removeRow(0);
         }
+    }
+    
+    private void ver(){
+        VisualizaCliente janela = new VisualizaCliente(this.pai, true, this.lista.get(jtabela.getSelectedRow()));
+        janela.setVisible(true);
     }
     
     /**

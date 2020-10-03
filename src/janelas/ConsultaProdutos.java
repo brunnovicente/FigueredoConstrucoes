@@ -301,13 +301,13 @@ public class ConsultaProdutos extends javax.swing.JDialog {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jbutaoadd)
+                        .addComponent(jbutaoadd, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbutaoEditar)
+                        .addComponent(jbutaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbutaoExcluir)
+                        .addComponent(jbutaoExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbutaonovo)
+                        .addComponent(jbutaonovo, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)))
                 .addContainerGap())
         );
@@ -336,24 +336,15 @@ public class ConsultaProdutos extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jTabelaPesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabelaPesquisaMouseClicked
-//        if(evt.getClickCount() == 2){
-//            if(produto == null){
-//                //if(!FachadaControle.getFachadaControle().getUsuarioLogado().getTipo().equals(Usuario.TIPO_VENDEDOR)){
-//                    //this.editar();
-//                this.ver();
-//                //}
-//            }else{
-//                this.mandarProdutoPraVenda();
-//            }
-//        }else{
-//            this.produtoSelecionado(this.jTabelaPesquisa.getSelectedRow());
-//        }
+        if(evt.getClickCount() == 2){
+            this.ver();
+        }
     }//GEN-LAST:event_jTabelaPesquisaMouseClicked
 
     private void jTabelaPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTabelaPesquisaKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
             if(produto == null){
-//                this.ver();
+                this.ver();
             }else{
                 this.enviarParaVenda();
             }
@@ -466,6 +457,11 @@ public class ConsultaProdutos extends javax.swing.JDialog {
         for(int i=0;i<tam;i++){
             model.removeRow(0);
         }
+    }
+    
+    private void ver(){
+        VisualizaProduto viPro = new VisualizaProduto(this.pai, true, this.lista.get(jTabelaPesquisa.getSelectedRow()));
+        viPro.setVisible(true);
     }
     
     /**
