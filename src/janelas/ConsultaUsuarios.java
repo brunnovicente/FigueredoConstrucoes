@@ -5,7 +5,7 @@
 package janelas;
 
 
-import entidades.Usuario;
+import entidades.User;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -174,16 +174,16 @@ public class ConsultaUsuarios extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     public void atualizaTabela(){
-        List<Usuario> lista = Banco.getBanco().consultaUsuario();
+        List<User> lista = Banco.getBanco().consultaUsuario();
         DefaultTableModel modelo = (DefaultTableModel) jtabela.getModel();
         int tam = modelo.getRowCount();
         for(int i=0;i<tam;i++){
             modelo.removeRow(0);
         }
-        for(Usuario u : lista){
+        for(User u : lista){
             String[] linha = new String[3];
             linha[0] = u.getNome();
-            linha[1] = u.getLogin();
+            linha[1] = u.getUsername();
             linha[2] = u.getEmail()+"";
             modelo.addRow(linha);
         }

@@ -8,7 +8,7 @@ package janelas;
 import entidades.Cliente;
 import entidades.Item;
 import entidades.Produto;
-import entidades.Usuario;
+import entidades.User;
 import entidades.Venda;
 import java.awt.event.KeyEvent;
 import java.text.DecimalFormat;

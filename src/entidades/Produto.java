@@ -34,19 +34,13 @@ public class Produto {
     private int id;
     
     @Column(unique=true)
-    private String codigobarra;
+    private String codigoBarra;
     private String descricao;
     private double preco;
     private double minimo;
     private double estoque;
     private int status;
-    
-    //@ManyToMany
-    //@JoinTable(name="produto_fornecedor", joinColumns = {@JoinColumn(name="produto_id")}, inverseJoinColumns = {@JoinColumn(name="fornecedor_id")})
-    @OneToMany(cascade = (CascadeType.ALL), fetch = FetchType.EAGER)
-    @JoinColumn(name = "produto")
-    private List<Produto_fornecedor> fornecedor;
-    
+            
     public static int getATIVO() {
         return ATIVO;
     }
@@ -60,7 +54,7 @@ public class Produto {
     }
 
     public String getCodigobarras() {
-        return codigobarra;
+        return codigoBarra;
     }
 
     public String getDescricao() {
@@ -88,7 +82,7 @@ public class Produto {
     }
 
     public void setCodigobarras(String codigobarra) {
-        this.codigobarra = codigobarra;
+        this.codigoBarra = codigobarra;
     }
 
     public void setDescricao(String descricao) {
@@ -109,14 +103,6 @@ public class Produto {
 
     public void setStatus(int status) {
         this.status = status;
-    }
-
-    public List<Produto_fornecedor> getFornecedor() {
-        return fornecedor;
-    }
-
-    public void setFornecedor(List<Produto_fornecedor> fornecedor) {
-        this.fornecedor = fornecedor;
     }
 
 }

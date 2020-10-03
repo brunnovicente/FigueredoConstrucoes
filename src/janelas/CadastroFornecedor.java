@@ -44,6 +44,7 @@ public class CadastroFornecedor extends javax.swing.JDialog {
         jtelefone1.setText(this.fornecedor.getTelefone1());
         jtelefone2.setText(this.fornecedor.getTelefone2());
         jemail.setText(this.fornecedor.getEmail());
+        
         jcnpj.requestFocus();
     }
     
@@ -369,7 +370,7 @@ public class CadastroFornecedor extends javax.swing.JDialog {
                 fornecedor.setTelefone2(jtelefone2.getText());
                 fornecedor.setStatus(Fornecedor.ATIVO);
 
-                    Banco.getBanco().cadastrarFornecedor(fornecedor);
+                Banco.getBanco().cadastrarFornecedor(fornecedor);
 
                 JOptionPane.showMessageDialog(null, "Fornecedor Cadastrado com sucesso!");
                 jbutaosalvar.setEnabled(false);

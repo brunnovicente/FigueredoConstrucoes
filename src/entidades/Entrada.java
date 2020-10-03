@@ -30,12 +30,16 @@ public class Entrada {
     private double preco_compra;
     
     @ManyToOne 
-    @JoinColumn(name = "produto")
+    @JoinColumn(name = "produto_id")
     private Produto produto;
     
     @ManyToOne 
-    @JoinColumn(name = "usuario")
-    private Usuario usuario;
+    @JoinColumn(name = "user_id")
+    private User usuario;
+    
+    @ManyToOne 
+    @JoinColumn(name = "fornecedore_id")
+    private Fornecedor fornecedor;
     
     public int getId() {
         return id;
@@ -57,7 +61,7 @@ public class Entrada {
         return produto;
     }
 
-    public Usuario getUsuario() {
+    public User getUsuario() {
         return usuario;
     }
 
@@ -81,8 +85,16 @@ public class Entrada {
         this.produto = produto;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(User usuario) {
         this.usuario = usuario;
     }
-   
+
+    public Fornecedor getFornecedor() {
+        return fornecedor;
+    }
+
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
+    }
+
 }

@@ -94,7 +94,6 @@ public class ConsultaFornecedor extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1100, 600));
         setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados da Busca"));
@@ -118,6 +117,11 @@ public class ConsultaFornecedor extends javax.swing.JDialog {
         });
         jtabela.setRowHeight(40);
         jtabela.getTableHeader().setReorderingAllowed(false);
+        jtabela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtabelaMouseClicked(evt);
+            }
+        });
         jtabela.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jtabelaKeyPressed(evt);
@@ -304,6 +308,13 @@ public class ConsultaFornecedor extends javax.swing.JDialog {
         cadastrofornecedor.setVisible(true);
         this.buscarFornecedor();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jtabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtabelaMouseClicked
+        if(evt.getClickCount() == 2){
+            VisualizaFornecedor visualiza = new VisualizaFornecedor(pai, true, this.lista.get(jtabela.getSelectedRow()));
+            visualiza.setVisible(true);
+        }   
+    }//GEN-LAST:event_jtabelaMouseClicked
 
  
     

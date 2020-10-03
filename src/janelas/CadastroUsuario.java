@@ -5,7 +5,7 @@
  */
 package janelas;
 
-import entidades.Usuario;
+import entidades.User;
 import javax.swing.JOptionPane;
 import persistencia.Banco;
 import persistencia.Criptografia;
@@ -16,7 +16,7 @@ import persistencia.Criptografia;
  */
 public class CadastroUsuario extends javax.swing.JDialog {
 
-    private Usuario usuario;
+    private User usuario;
     /**
      * Creates new form CadastroUsuarios
      */
@@ -27,13 +27,13 @@ public class CadastroUsuario extends javax.swing.JDialog {
         this.usuario = null;
     }
     
-    public CadastroUsuario(java.awt.Frame parent, boolean modal, Usuario usuario) {
+    public CadastroUsuario(java.awt.Frame parent, boolean modal, User usuario) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
         this.usuario = usuario;
         jnome.setText(usuario.getNome());
-        jlogin.setText(usuario.getLogin());
+        jlogin.setText(usuario.getUsername());
         jemail.setText(usuario.getEmail());
     }
 
@@ -138,7 +138,7 @@ public class CadastroUsuario extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jbutaosalvar.setIcon(new javax.swing.ImageIcon("D:\\Users\\brunn\\Documents\\GitHub\\ControleEstoque\\src\\imagens\\Salvar.png")); // NOI18N
+        jbutaosalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Salvar.png"))); // NOI18N
         jbutaosalvar.setText("SALVAR");
         jbutaosalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,20 +210,20 @@ public class CadastroUsuario extends javax.swing.JDialog {
         if(!senha.isEmpty() && !jnome.getText().isEmpty() && !jlogin.getText().isEmpty() && !jemail.getText().isEmpty()){
             if(senha.equals(confirma)){
                 if(usuario == null){
-                    usuario = new Usuario();
+                    usuario = new User();
                     usuario.setNome(jnome.getText());
-                    usuario.setLogin(jlogin.getText());
+                    usuario.setUsername(jlogin.getText());
                     usuario.setEmail(jemail.getText());
-                    usuario.setSenha(Criptografia.getCriptografia().HashSHA512(senha));
+                    usuario.setPassword(Criptografia.getCriptografia().HashSHA512(senha));
                     usuario.setStatus(1);
                     Banco.getBanco().cadastrar(usuario);
                     jbutaosalvar.setEnabled(false);
                     JOptionPane.showMessageDialog(null, "Usuario cadastrado com sucesso!");
                 }else{
                     usuario.setNome(jnome.getText());
-                    usuario.setLogin(jlogin.getText());
+                    usuario.setUsername(jlogin.getText());
                     usuario.setEmail(jemail.getText());
-                    usuario.setSenha(Criptografia.getCriptografia().HashSHA512(senha));
+                    usuario.setPassword(Criptografia.getCriptografia().HashSHA512(senha));
                     usuario.setStatus(1);
                     Banco.getBanco().editarUsuario(usuario);
                     JOptionPane.showMessageDialog(null, "Usuario modificado com sucesso!");

@@ -8,7 +8,7 @@ package persistencia;
 import entidades.Cliente;
 import entidades.Fornecedor;
 import entidades.Produto;
-import entidades.Usuario;
+import entidades.User;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -22,6 +22,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -31,7 +32,7 @@ public class Banco {
     
     private static Banco banco;
     private static Cliente clientePadrao;
-    public static Usuario usuario;
+    public static User usuario;
     
     EntityManagerFactory factory;// = Persistence.createEntityManagerFactory("bancopecas");
     EntityManager em;// = factory.createEntityManager();
@@ -52,7 +53,7 @@ public class Banco {
      * Retorna o usuário logado no sistema
      * @return Objeto usuário
      */
-    public static Usuario getUsuarioLogado(){
+    public static User getUsuarioLogado(){
         return usuario;
     }
     
@@ -102,16 +103,15 @@ public class Banco {
         this.factory.close();
     }
     
-    public Usuario getUsuario(String login){
+    public User getUsuario(String login){
         this.abrirInstancia();
         em = factory.createEntityManager();
         
-        List<Usuario> lista = null;
-
-        Query res = em.createQuery("SELECT "
-                + "u "
-                + "FROM Usuario as u "
-                + "WHERE u.login = '"+login+"'");
+        List<User> lista = null;
+        
+        String sql = "SELECT u FROM User as u WHERE u.username = '"+login+"'";
+        
+        Query res = em.createQuery(sql);
 
         lista = res.getResultList();
         
@@ -129,10 +129,10 @@ public class Banco {
       
     public boolean fazerLogin(String login, String senha) throws Exception{
         this.gerarDados();
-        Usuario user = this.getUsuario(login);
+        User user = this.getUsuario(login);
         
         if(user != null){
-            if(user.getSenha().equals(Criptografia.getCriptografia().HashSHA512(senha))){
+            if(user.getPassword().equals(Criptografia.getCriptografia().HashSHA512(senha))){
                 usuario = user;
                 return true;
             }else{
@@ -146,23 +146,25 @@ public class Banco {
     
     public void gerarDados(){
         this.clientePadrao();
-        Usuario user = this.getUsuario("admin");
+        User user = this.getUsuario("admin");
+        System.out.println("Usuário: "+ user);
                 
         if(clientePadrao == null){
             Cliente cliente = new Cliente();
             cliente.setCpf("000.000.000-00");
             cliente.setNome("Padrão");
+            cliente.setNumero(1);
             cliente.setStatus(Cliente.DESATIVADO);
             this.cadastrar(cliente);
             this.clientePadrao();
         }
         if(user == null){
-            user = new Usuario();
+            user = new User();
             user.setEmail("user@user.com");
-            user.setLogin("admin");
-            user.setSenha(Criptografia.getCriptografia().HashSHA512("admin"));
+            user.setUsername("admin");
+            user.setPassword(Criptografia.getCriptografia().HashSHA512("admin"));
             user.setNome("Admin");
-            user.setStatus(Usuario.ATIVO);
+            user.setStatus(User.ATIVO);
             this.cadastrar(user);
         }
     }
@@ -230,7 +232,7 @@ public class Banco {
         this.fecharInstancia();
     }
     
-    public void editarUsuario(Usuario usuario){
+    public void editarUsuario(User usuario){
         this.abrirInstancia();
         this.em.getTransaction().begin();
         this.em.merge(usuario);
@@ -240,15 +242,15 @@ public class Banco {
     
     //FUNÇÕES DE CONSULTA
     
-    public List<Usuario> consultaUsuario(){
+    public List<User> consultaUsuario(){
         this.abrirInstancia();
         em = factory.createEntityManager();
-        List<Usuario> lista = null;
+        List<User> lista = null;
 
         Query res = em.createQuery("SELECT "
                 + "u "
-                + "FROM Usuario as u WHERE status = "+Usuario.ATIVO
-                + " ORDER BY u.nome");
+                + "FROM User as u WHERE status = "+User.ATIVO
+                + " ORDER BY u.username");
         lista = res.getResultList();
         
         em.clear();
@@ -265,7 +267,7 @@ public class Banco {
         Query res = em.createQuery("SELECT "
                 + "p "
                 + "FROM Produto as p "
-                + "WHERE (p.descricao LIKE '%"+chave+"%' OR p.codigobarra = '"+chave+"')AND p.status = "+Produto.ATIVO+" ORDER BY p.descricao");
+                + "WHERE (p.descricao LIKE '%"+chave+"%' OR p.codigoBarra = '"+chave+"')AND p.status = "+Produto.ATIVO+" ORDER BY p.descricao");
         lista = res.getResultList();
         
         em.clear();
@@ -282,7 +284,7 @@ public class Banco {
         Query res = em.createQuery("SELECT "
                 + "p "
                 + "FROM Produto as p "
-                + "WHERE p.codigobarra = '"+codigo+"' AND p.status = 1");
+                + "WHERE p.codigoBarra = '"+codigo+"' AND p.status = 1");
         lista = res.getResultList();
         
         em.clear();
@@ -347,7 +349,6 @@ public class Banco {
         this.em.merge(produto);
         this.em.getTransaction().commit();
         this.fecharInstancia();
-        this.limparProdutoFornecedor();
     }
     
     public void editarFornecedor(Fornecedor fornecedor){
@@ -366,16 +367,6 @@ public class Banco {
         this.fecharInstancia();
     }
     
-    //FUNÇÃO DE EXCLUSÃO
-    public void limparProdutoFornecedor(){
-        this.abrirInstancia();
-        em.getTransaction().begin();
-        
-        Query query = em.createNativeQuery("DELETE FROM produto_fornecedor WHERE produto IS NULL");
-        query.executeUpdate();
-        
-        em.getTransaction().commit();        
-        this.fecharInstancia();
-    }
+    
     
 }//Fim da Classe

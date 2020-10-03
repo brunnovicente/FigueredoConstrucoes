@@ -5,7 +5,6 @@
  */
 package janelas;
 
-import entidades.Produto_fornecedor;
 import entidades.Fornecedor;
 import entidades.Produto;
 import java.awt.event.KeyEvent;
@@ -26,7 +25,7 @@ import persistencia.Banco;
  */
 public class CadastroProduto extends javax.swing.JDialog {
     private Produto produto;
-    private List<Produto_fornecedor> fornecedores;
+    
     /**
      * Creates new form CadastroProduto
      */
@@ -36,7 +35,6 @@ public class CadastroProduto extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         jbutaonovo.setEnabled(false);
         this.produto = null;
-        this.fornecedores = new ArrayList();
         jcodigo.requestFocus();
     }
     
@@ -44,6 +42,7 @@ public class CadastroProduto extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+        jtexto.setText("Editar Produto");
         this.produto = produto;
         jbutaonovo.setVisible(false);
         jcodigo.setText(produto.getCodigobarras());
@@ -78,7 +77,7 @@ public class CadastroProduto extends javax.swing.JDialog {
         jbutaosalvar = new javax.swing.JButton();
         jbutaonovo = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
+        jtexto = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -212,9 +211,9 @@ public class CadastroProduto extends javax.swing.JDialog {
         jPanel3.setBackground(new java.awt.Color(0, 0, 204));
         jPanel3.setPreferredSize(new java.awt.Dimension(100, 50));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 32)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Cadastro de Produto");
+        jtexto.setFont(new java.awt.Font("Tahoma", 1, 32)); // NOI18N
+        jtexto.setForeground(new java.awt.Color(255, 255, 255));
+        jtexto.setText("Cadastro de Produto");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -222,13 +221,13 @@ public class CadastroProduto extends javax.swing.JDialog {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(235, 235, 235)
-                .addComponent(jLabel6)
+                .addComponent(jtexto)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jLabel6)
+                .addComponent(jtexto)
                 .addGap(0, 11, Short.MAX_VALUE))
         );
 
@@ -265,14 +264,6 @@ public class CadastroProduto extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbutaosalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbutaosalvarActionPerformed
-        this.salvar();
-    }//GEN-LAST:event_jbutaosalvarActionPerformed
-
-    private void jbutaonovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbutaonovoActionPerformed
-        this.novo();
-    }//GEN-LAST:event_jbutaonovoActionPerformed
-
     private void jcodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jcodigoKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
             this.jdescricao.requestFocus();
@@ -280,7 +271,9 @@ public class CadastroProduto extends javax.swing.JDialog {
     }//GEN-LAST:event_jcodigoKeyPressed
 
     private void jdescricaoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jdescricaoKeyPressed
-        
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            this.jpreco.requestFocus();
+        }
     }//GEN-LAST:event_jdescricaoKeyPressed
 
     private void jprecoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jprecoKeyPressed
@@ -299,8 +292,18 @@ public class CadastroProduto extends javax.swing.JDialog {
     }//GEN-LAST:event_jestoqueKeyPressed
 
     private void jminimoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jminimoKeyPressed
-                
+          if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            this.salvar();
+        }      
     }//GEN-LAST:event_jminimoKeyPressed
+
+    private void jbutaosalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbutaosalvarActionPerformed
+        this.salvar();
+    }//GEN-LAST:event_jbutaosalvarActionPerformed
+
+    private void jbutaonovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbutaonovoActionPerformed
+        this.novo();
+    }//GEN-LAST:event_jbutaonovoActionPerformed
     
     private void novo(){
         jbutaosalvar.setEnabled(true);
@@ -311,7 +314,6 @@ public class CadastroProduto extends javax.swing.JDialog {
         jestoque.setText("");
         jminimo.setText("");
         this.produto = null;
-        this.fornecedores = new ArrayList();        
         jbutaosalvar.setEnabled(true);
         //jbutaoexcluir.setEnabled(true);
         jbutaonovo.setEnabled(false);
@@ -328,7 +330,6 @@ public class CadastroProduto extends javax.swing.JDialog {
                 produto.setEstoque(Integer.parseInt(jestoque.getText()));
                 produto.setPreco(Double.parseDouble(jpreco.getText().replace(",", ".")));
                 produto.setStatus(Produto.ATIVO);
-                produto.setFornecedor(this.fornecedores);
                 produto.setMinimo(Double.parseDouble(jminimo.getText()));
                 Banco.getBanco().cadastrarProduto(this.produto);
                 JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
@@ -344,15 +345,13 @@ public class CadastroProduto extends javax.swing.JDialog {
                 produto.setPreco(Double.parseDouble(jpreco.getText().replace(",", ".")));
                 produto.setMinimo(Double.parseDouble(jminimo.getText()));
                 produto.setStatus(Produto.ATIVO);
-                produto.setFornecedor(this.fornecedores);
-                produto.setStatus(Produto.ATIVO);
                 Banco.getBanco().editarProduto(this.produto);
                 JOptionPane.showMessageDialog(null, "Produto alterado com sucesso!");
                 this.dispose();
             }
         }catch(Exception ex){
             if(ex.getMessage().contains("For")){
-                JOptionPane.showMessageDialog(null, "Existe algum campo com valor não permito, tais como letras em campus numérico.");
+                JOptionPane.showMessageDialog(null, "Existe algum campo com valor não permitido, tais como letras em campus numérico.");
             }else{
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
@@ -366,7 +365,6 @@ public class CadastroProduto extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
@@ -377,5 +375,6 @@ public class CadastroProduto extends javax.swing.JDialog {
     private javax.swing.JTextField jestoque;
     private javax.swing.JTextField jminimo;
     private javax.swing.JTextField jpreco;
+    private javax.swing.JLabel jtexto;
     // End of variables declaration//GEN-END:variables
 }

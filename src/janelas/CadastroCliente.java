@@ -42,6 +42,11 @@ public class CadastroCliente extends javax.swing.JDialog {
         jtelefone1.setText(this.cliente.getTelefone1());
         jtelefone2.setText(this.cliente.getTelefone2());
         jemail.setText(this.cliente.getEmail());
+        jcep.setText(this.cliente.getCep());
+        jbairro.setText(this.cliente.getBairro());
+        jestado.setText(this.cliente.getEstado());
+        jendereco.setText(this.cliente.getEndereco());
+        jnumero.setText(this.cliente.getNumero()+"");
     }
 
     /**
@@ -346,10 +351,10 @@ public class CadastroCliente extends javax.swing.JDialog {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(230, 230, 230)
                 .addComponent(jLabel7)
-                .addGap(230, 230, 230))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

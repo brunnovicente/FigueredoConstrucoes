@@ -29,11 +29,11 @@ public class Item {
     private double total;
     
     @ManyToOne 
-    @JoinColumn(name = "venda")
+    @JoinColumn(name = "venda_id")
     private Venda venda;
     
     @OneToOne 
-    @JoinColumn(name = "produto")
+    @JoinColumn(name = "produto_id")
     private Produto produto;
 
     public int getId() {

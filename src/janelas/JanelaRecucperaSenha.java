@@ -5,7 +5,7 @@
  */
 package janelas;
 
-import entidades.Usuario;
+import entidades.User;
 import java.awt.event.KeyEvent;
 import java.util.Properties;
 import javax.mail.Address;
@@ -140,12 +140,12 @@ public class JanelaRecucperaSenha extends javax.swing.JDialog {
     
     private void enviar(){
         
-        Usuario usuario = Banco.getBanco().getUsuario(jlogin.getText());
+        User usuario = Banco.getBanco().getUsuario(jlogin.getText());
         
         if(usuario != null){
             
             String novasenha = this.gerarSenha();
-            usuario.setSenha(Criptografia.getCriptografia().HashSHA512(novasenha));
+            usuario.setPassword(Criptografia.getCriptografia().HashSHA512(novasenha));
             Banco.getBanco().editarUsuario(usuario);
             
             Properties props = new Properties();

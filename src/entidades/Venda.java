@@ -43,15 +43,15 @@ public class Venda {
     private String pagamento;
     
     @ManyToOne 
-    @JoinColumn(name = "cliente")
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
     
     @ManyToOne 
-    @JoinColumn(name = "usuario")
-    private Usuario usuario;
+    @JoinColumn(name = "user_id")
+    private User usuario;
     
     @OneToMany(cascade = (CascadeType.ALL), fetch = FetchType.EAGER)
-    @JoinColumn(name = "venda")
+    @JoinColumn(name = "venda_id")
     private List<Item> itens;
     
     public Venda(){
@@ -78,7 +78,7 @@ public class Venda {
         return cliente;
     }
 
-    public Usuario getUsuario() {
+    public User getUsuario() {
         return usuario;
     }
 
@@ -102,7 +102,7 @@ public class Venda {
         this.cliente = cliente;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(User usuario) {
         this.usuario = usuario;
     }
 

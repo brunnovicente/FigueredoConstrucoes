@@ -29,14 +29,13 @@ public class Cliente {
     
     @Column(unique=true)
     private String cpf;
-    
-    private String cep;
     private String nome;
+    private String cep;
     private String endereco;
     private String bairro;
-    private int numero;
     private String cidade;
     private String estado;
+    private int numero;
     private String telefone1;
     private String telefone2;
     private String email;
