@@ -40,7 +40,9 @@ public class Produto {
     private double minimo;
     private double estoque;
     private int status;
-            
+    @Column(name = "foto", unique = false, nullable = true, length = 1000000)
+    private byte[] foto;    
+    
     public static int getATIVO() {
         return ATIVO;
     }
@@ -104,5 +106,23 @@ public class Produto {
     public void setStatus(int status) {
         this.status = status;
     }
+
+    public String getCodigoBarra() {
+        return codigoBarra;
+    }
+
+    public void setCodigoBarra(String codigoBarra) {
+        this.codigoBarra = codigoBarra;
+    }
+
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
+    }
+    
+    
 
 }

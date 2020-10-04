@@ -291,8 +291,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-        //JanelaEntrada janela = new JanelaEntrada(this, true);
-        //janela.setVisible(true);
+        JanelaEntrada janela = new JanelaEntrada(this, true);
+        janela.setVisible(true);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
@@ -332,7 +332,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         }
 
         //C:\BC\SIAP\mysql\bin
-        BackupSupremo bkp = new BackupSupremo(caminho+"mysql",caminho+"mysqldump","root", "110416", "figueredo");
+        BackupSupremo bkp = new BackupSupremo(caminho+"mysql",caminho+"mysqldump","root", "1104", "figueredo");
         //BackupSupremo bkp = new BackupSupremo("C:\\Users\\Bruno Vicente\\Dropbox\\projetos\\DANIELSIAP\\mysql\\bin\\mysql","C:\\Users\\Bruno Vicente\\Dropbox\\projetos\\DANIELSIAP\\mysql\\bin\\mysqldump","root", "neural", "bancopecas");
 
         

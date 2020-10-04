@@ -2,11 +2,16 @@ package persistencia;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,10 +28,31 @@ public class BackupSupremo {
     private Process p;
 
     public BackupSupremo() {
-        mysqldump = "mysqldump";
-        this.user = "root";
-        this.password = "";
-        this.database = "mysql";
+        
+        Properties config = new Properties();
+        
+        try {
+            config.load(new FileInputStream("propriedades.ini"));
+            
+            Map propriedades = new HashMap<String,String>();
+            String servidor = Criptografia.getCriptografia().decrypt(config.getProperty("SERVIDOR"));
+            String banco = Criptografia.getCriptografia().decrypt(config.getProperty("BANCO"));
+            String usuario = Criptografia.getCriptografia().decrypt(config.getProperty("USUARIO"));
+            String senha = Criptografia.getCriptografia().decrypt(config.getProperty("SENHA"));
+            String mysql = Criptografia.getCriptografia().decrypt(config.getProperty("MYSQL"));
+            
+            mysqldump = mysql + "/mysqldump";
+            this.user = usuario;
+            this.password = senha;
+            this.database = mysql + "/mysql";
+           
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(BackupSupremo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(BackupSupremo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }
 
     public BackupSupremo(String user, String password, String database) {

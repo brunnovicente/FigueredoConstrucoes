@@ -24,7 +24,7 @@ public class ConsultaFornecedor extends javax.swing.JDialog {
     
     private List<Fornecedor> lista;
     private JFrame pai;
-    
+    private Fornecedor fornecedor = null;
     /**
      * Creates new form ConsultaFornecedor
      */
@@ -35,6 +35,39 @@ public class ConsultaFornecedor extends javax.swing.JDialog {
         this.pai = (JFrame) parent;
         this.buscarFornecedor();
         this.jchave.requestFocus();
+        this.jbutaoadd.setVisible(false);
+    }
+    
+    public ConsultaFornecedor(java.awt.Frame parent, boolean modal, Fornecedor fornecedor) {
+        super(parent, modal);
+        initComponents();
+        this.setLocationRelativeTo(null);
+        this.pai = (JFrame) parent;
+        this.fornecedor = fornecedor;
+        this.jbutaoEditar.setVisible(false);
+        this.jbutaoExcluir.setVisible(false);
+        this.jbutaoNovo.setVisible(false);
+        
+        this.buscarFornecedor();
+        this.jchave.requestFocus();
+        
+    }
+    
+    private void add(){
+        
+        Fornecedor f = this.lista.get(jtabela.getSelectedRow());
+        
+        fornecedor.setId(f.getId());
+        fornecedor.setCnpj(f.getCnpj());
+        fornecedor.setEmail(f.getEmail());
+        fornecedor.setEndereco(f.getEndereco());
+        fornecedor.setRazao(f.getRazao());
+        fornecedor.setStatus(f.getStatus());
+        fornecedor.setTelefone1(f.getTelefone1());
+        fornecedor.setTelefone2(f.getTelefone2());
+        
+        this.dispose();
+        
     }
     
     private void buscarFornecedor(){
@@ -44,12 +77,6 @@ public class ConsultaFornecedor extends javax.swing.JDialog {
         busca.start();
         this.jchave.requestFocus();
     }
-     
-    private void editar(){
-         int item = jtabela.getSelectedRow();
-         //CadastroProduto janela = new CadastroProduto(this.pai, true, this.lista.get(item));
-         //janela.setVisible(true);
-     }//Fim do ver
     
     private void excluir(){
         int v = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir esse Fornecedor?", "EXCLUIR FORNECEDOR", JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
@@ -87,11 +114,12 @@ public class ConsultaFornecedor extends javax.swing.JDialog {
         jchave = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jbutaoNovo = new javax.swing.JButton();
+        jbutaoExcluir = new javax.swing.JButton();
+        jbutaoEditar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jbutaoadd = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -183,27 +211,27 @@ public class ConsultaFornecedor extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Add.png"))); // NOI18N
-        jButton2.setText("NOVO");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jbutaoNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Add.png"))); // NOI18N
+        jbutaoNovo.setText("NOVO");
+        jbutaoNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jbutaoNovoActionPerformed(evt);
             }
         });
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Lixeira2.png"))); // NOI18N
-        jButton3.setText("EXCLUIR");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jbutaoExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Lixeira2.png"))); // NOI18N
+        jbutaoExcluir.setText("EXCLUIR");
+        jbutaoExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jbutaoExcluirActionPerformed(evt);
             }
         });
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Editar2.png"))); // NOI18N
-        jButton4.setText("EDITAR");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jbutaoEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Editar2.png"))); // NOI18N
+        jbutaoEditar.setText("EDITAR");
+        jbutaoEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jbutaoEditarActionPerformed(evt);
             }
         });
 
@@ -231,6 +259,14 @@ public class ConsultaFornecedor extends javax.swing.JDialog {
                 .addGap(0, 11, Short.MAX_VALUE))
         );
 
+        jbutaoadd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Add.png"))); // NOI18N
+        jbutaoadd.setText("Add");
+        jbutaoadd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbutaoaddActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -242,11 +278,13 @@ public class ConsultaFornecedor extends javax.swing.JDialog {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton4)
+                        .addComponent(jbutaoadd)
+                        .addGap(18, 18, 18)
+                        .addComponent(jbutaoEditar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3)
+                        .addComponent(jbutaoExcluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)))
+                        .addComponent(jbutaoNovo)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -258,9 +296,10 @@ public class ConsultaFornecedor extends javax.swing.JDialog {
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(jbutaoNovo)
+                    .addComponent(jbutaoExcluir)
+                    .addComponent(jbutaoEditar)
+                    .addComponent(jbutaoadd))
                 .addContainerGap())
         );
 
@@ -271,21 +310,25 @@ public class ConsultaFornecedor extends javax.swing.JDialog {
         this.buscarFornecedor();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jbutaoNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbutaoNovoActionPerformed
         CadastroFornecedor cadastrofornecedor = new CadastroFornecedor(pai, true);
         cadastrofornecedor.setVisible(true);
         this.buscarFornecedor();
         jchave.requestFocus();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jbutaoNovoActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jbutaoExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbutaoExcluirActionPerformed
         this.excluir();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jbutaoExcluirActionPerformed
 
     private void jtabelaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtabelaKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            VisualizaFornecedor visualiza = new VisualizaFornecedor(pai, true, this.lista.get(jtabela.getSelectedRow()));
-            visualiza.setVisible(true);
+            if(fornecedor == null){
+                VisualizaFornecedor visualiza = new VisualizaFornecedor(pai, true, this.lista.get(jtabela.getSelectedRow()));
+                visualiza.setVisible(true);
+            }else{
+                this.add();
+            }
         }
         if(evt.getKeyCode() == KeyEvent.VK_DELETE){
             this.excluir();
@@ -302,12 +345,12 @@ public class ConsultaFornecedor extends javax.swing.JDialog {
         
     }//GEN-LAST:event_jchaveKeyPressed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jbutaoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbutaoEditarActionPerformed
         Fornecedor fornecedor = this.lista.get(jtabela.getSelectedRow());
         CadastroFornecedor cadastrofornecedor = new CadastroFornecedor(this.pai, true, fornecedor);
         cadastrofornecedor.setVisible(true);
         this.buscarFornecedor();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jbutaoEditarActionPerformed
 
     private void jtabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtabelaMouseClicked
         if(evt.getClickCount() == 2){
@@ -316,19 +359,24 @@ public class ConsultaFornecedor extends javax.swing.JDialog {
         }   
     }//GEN-LAST:event_jtabelaMouseClicked
 
+    private void jbutaoaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbutaoaddActionPerformed
+        this.add();
+    }//GEN-LAST:event_jbutaoaddActionPerformed
+
  
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbutaoEditar;
+    private javax.swing.JButton jbutaoExcluir;
+    private javax.swing.JButton jbutaoNovo;
+    private javax.swing.JButton jbutaoadd;
     private javax.swing.JTextField jchave;
     private javax.swing.JTable jtabela;
     // End of variables declaration//GEN-END:variables

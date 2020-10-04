@@ -467,6 +467,7 @@ public class JanelaPDV extends javax.swing.JDialog {
                 item.setQuantidade(Double.parseDouble(jquantidade.getText()));
                 item.setTotal(item.getQuantidade() * produto.getPreco());
                 item.getProduto().setEstoque(item.getProduto().getEstoque() - item.getQuantidade());
+                item.setPreco(this.produto.getPreco());
                 venda.getItens().add(item);
                 venda.setTotal(this.venda.getTotal()+item.getTotal());
 

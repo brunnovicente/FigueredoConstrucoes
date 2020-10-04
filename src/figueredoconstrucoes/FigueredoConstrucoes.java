@@ -5,20 +5,8 @@
  */
 package figueredoconstrucoes;
 
-import entidades.Fornecedor;
-import entidades.Item;
-import entidades.Produto;
-import entidades.Venda;
 import janelas.TelaLogin;
-import java.io.File;
 import java.io.IOException;
-import java.security.CodeSource;
-import java.text.DecimalFormat;
-import java.util.Date;
-import java.util.List;
-import javax.swing.JOptionPane;
-import persistencia.Banco;
-import persistencia.Criptografia;
 
 /**
  *
@@ -33,9 +21,28 @@ public class FigueredoConstrucoes {
         // TODO code application logic here
         TelaLogin telalogin = new TelaLogin();
         telalogin.setVisible(true);
+        
+        
+        //exec();
+        
                 
     }
     
+    
+    private static void exec(){ 
+        Process exec; 
+        try { 
+            exec = Runtime.getRuntime().exec("mysqldump -u root -p1104 figueredo > d:/figueredo.sql"); 
+            if ( exec.waitFor() == 0)
+                System.out.println("Executado."); 
+            else 
+                System.out.println("ERRO"); 
+        } catch (IOException e) { 
+            e.printStackTrace(); 
+        } catch (InterruptedException e) { 
+            e.printStackTrace(); 
+        } 
+    }
     
     
 }

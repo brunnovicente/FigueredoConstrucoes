@@ -27,6 +27,7 @@ public class Item {
     
     private double quantidade;
     private double total;
+    private double preco;
     
     @ManyToOne 
     @JoinColumn(name = "venda_id")
@@ -74,6 +75,14 @@ public class Item {
 
     public void setProduto(Produto produto) {
         this.produto = produto;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
     }
     
         
