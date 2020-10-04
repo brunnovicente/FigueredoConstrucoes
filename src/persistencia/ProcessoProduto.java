@@ -24,18 +24,24 @@ public class ProcessoProduto extends Thread {
     private String chave;
     private List<Produto> lista;
     private boolean viva;
+    private boolean minimo;
    
-    public ProcessoProduto(JTable tabela, String chave, List<Produto> lista) {
+    public ProcessoProduto(JTable tabela, String chave, List<Produto> lista, boolean minimo) {
         this.tabela = tabela;
         this.chave = chave;
         this.lista = lista;
+        this.minimo = minimo;
     }
 
     
     @Override
     public void run() {
         this.viva = true;
-        this.produtos = Banco.getBanco().consultaProduto(this.chave);
+        if(minimo){
+            this.produtos = Banco.getBanco().consultaProdutosMinimo(this.chave);
+        }else{
+            this.produtos = Banco.getBanco().consultaProduto(this.chave);
+        }
         this.preencherTabela();
         this.viva = false;
         

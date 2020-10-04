@@ -20,13 +20,13 @@ public class JanelaBarraBusca extends javax.swing.JDialog {
     /**
      * Creates new form JanelaBarraBusca
      */
-    public JanelaBarraBusca(JFrame janela, JTable tabela, String chave,List lista) {
+    public JanelaBarraBusca(JFrame janela, JTable tabela, String chave,List lista, boolean minimo) {
         super(janela, true);
         initComponents();
         this.setLocationRelativeTo(null);
         this.janela = janela;
 
-        ProcessoProduto processo = new ProcessoProduto(tabela, chave, lista);
+        ProcessoProduto processo = new ProcessoProduto(tabela, chave, lista, minimo);
         jbarra.setValue(10);
         jtexto.setText("Buscando produtos...");
         BarraBusca barra = new BarraBusca(this, jbarra, jtexto, processo);

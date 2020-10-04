@@ -276,6 +276,23 @@ public class Banco {
         return lista;
     }
     
+    public List<Produto> consultaProdutosMinimo(String chave){
+        this.abrirInstancia();
+        em = factory.createEntityManager();
+        List<Produto> lista = null;
+
+        Query res = em.createQuery("SELECT "
+                + "p "
+                + "FROM Produto as p "
+                + "WHERE p.status = "+Produto.ATIVO+" AND (p.descricao LIKE '%"+chave+"%' AND p.estoque <= p.minimo) ORDER BY p.descricao");
+        lista = res.getResultList();
+        
+        em.clear();
+        em.close();
+        this.fecharInstancia();
+        return lista;
+    }
+    
     public Produto consultaProdutoCodigo(String codigo){
         this.abrirInstancia();
         em = factory.createEntityManager();

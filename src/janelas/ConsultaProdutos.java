@@ -94,6 +94,7 @@ public class ConsultaProdutos extends javax.swing.JDialog {
         jchave = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jradioMinimo = new javax.swing.JRadioButton();
         jbutaoEditar = new javax.swing.JButton();
         jbutaoExcluir = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -201,6 +202,9 @@ public class ConsultaProdutos extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel2.setText("Digite a descrição do produto");
 
+        jradioMinimo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jradioMinimo.setText("Mostrar apenas produtos com Estoque Mínimo ou menos");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -210,12 +214,14 @@ public class ConsultaProdutos extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1048, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jchave)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton7)))
+                        .addComponent(jButton7))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jradioMinimo))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -225,10 +231,12 @@ public class ConsultaProdutos extends javax.swing.JDialog {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jchave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7))
-                .addGap(14, 14, 14)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
+                    .addComponent(jButton7)
+                    .addComponent(jchave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jradioMinimo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -426,7 +434,7 @@ public class ConsultaProdutos extends javax.swing.JDialog {
     private void buscarProduto(){
         this.limparTabelas();
         this.lista = new ArrayList<>();
-        JanelaBarraBusca janela = new JanelaBarraBusca(pai, jTabelaPesquisa, jchave.getText(), lista);
+        JanelaBarraBusca janela = new JanelaBarraBusca(pai, jTabelaPesquisa, jchave.getText(), lista, jradioMinimo.isSelected());
         janela.setVisible(true);
         //ProcessoProduto busca = new ProcessoProduto(jTabelaPesquisa,jChave.getText(), this.lista);
         //busca.start();
@@ -531,5 +539,6 @@ public class ConsultaProdutos extends javax.swing.JDialog {
     private javax.swing.JButton jbutaoadd;
     private javax.swing.JButton jbutaonovo;
     private javax.swing.JTextField jchave;
+    private javax.swing.JRadioButton jradioMinimo;
     // End of variables declaration//GEN-END:variables
 }
