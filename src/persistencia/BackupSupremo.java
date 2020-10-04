@@ -25,7 +25,7 @@ public class BackupSupremo {
     public BackupSupremo() {
         mysqldump = "mysqldump";
         this.user = "root";
-        this.password = "110416";
+        this.password = "";
         this.database = "mysql";
     }
 
