@@ -326,11 +326,7 @@ public class ConsultaVendas extends javax.swing.JDialog {
                     linha[1] = venda.getCliente().getNome();
                     linha[2] = "R$ "+venda.getTotal()+"".replace(".", ",");
                     linha[3] = venda.getUsuario().getNome();
-                    if(venda.getStatus()==Venda.DESATIVADO){
-                        linha[4] = "Ok";
-                    }else{
-                        linha[4] = "Pendente";
-                    }
+                    linha[4] = venda.getPagamento();
                     modelo.addRow(linha);
                 }
 

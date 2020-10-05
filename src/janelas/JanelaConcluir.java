@@ -254,7 +254,7 @@ public class JanelaConcluir extends javax.swing.JDialog {
     
     private void finalizarVenda(){
         int selecionado = jpagamento.getSelectedIndex();
-        this.venda.setStatus(1);
+        this.venda.setStatus(Venda.ATIVO);
         if(selecionado < 2){
             if(selecionado == 0){
                 this.venda.setPagamento(Venda.dinheiro);
