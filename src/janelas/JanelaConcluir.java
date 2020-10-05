@@ -106,7 +106,7 @@ public class JanelaConcluir extends javax.swing.JDialog {
         });
 
         jpagamento.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jpagamento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Dinheiro", "Cartão", "Pendente" }));
+        jpagamento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Dinheiro", "Cartão" }));
         jpagamento.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jpagamentoItemStateChanged(evt);

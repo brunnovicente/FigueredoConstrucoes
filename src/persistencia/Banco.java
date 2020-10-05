@@ -9,9 +9,11 @@ import entidades.Cliente;
 import entidades.Fornecedor;
 import entidades.Produto;
 import entidades.User;
+import entidades.Venda;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -91,8 +93,10 @@ public class Banco {
             em = factory.createEntityManager();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Banco.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         } catch (IOException ex) {
             Logger.getLogger(Banco.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
    }
    
@@ -341,6 +345,21 @@ public class Banco {
                 + "WHERE (c.nome LIKE '%"+chave+"%' OR cpf = '"+chave+"') AND c.status = "+Cliente.ATIVO+" ORDER BY c.nome");
         lista = res.getResultList();
         
+        em.clear();
+        em.close();
+        this.fecharInstancia();
+        return lista;
+    }
+    
+    public List<Venda> consultaVendas(String inicio, String fim) throws SQLException, Exception {
+        this.abrirInstancia();
+
+        List<Venda> lista = null;
+        String sql = "SELECT v FROM Venda as v WHERE (v.data >= '" + inicio + "' AND v.data <= '" + fim + "')";
+        //JOptionPane.showMessageDialog(null, sql);
+        Query query = em.createQuery(sql);
+
+        lista = query.getResultList();
         em.clear();
         em.close();
         this.fecharInstancia();
