@@ -150,7 +150,7 @@ public class Banco {
     
     public void gerarDados(){
         this.clientePadrao();
-        User user = this.getUsuario("admin");
+        User user = null; //this.getUsuario("admin");
         System.out.println("Usuário: "+ user);
                 
         if(clientePadrao == null){
@@ -162,7 +162,7 @@ public class Banco {
             this.cadastrar(cliente);
             this.clientePadrao();
         }
-        if(user == null){
+        if(this.consultaUsuario().isEmpty()){
             user = new User();
             user.setEmail("user@user.com");
             user.setUsername("admin");
@@ -355,7 +355,7 @@ public class Banco {
         this.abrirInstancia();
 
         List<Venda> lista = null;
-        String sql = "SELECT v FROM Venda as v WHERE (v.data >= '" + inicio + "' AND v.data <= '" + fim + "')";
+        String sql = "SELECT v FROM Venda as v WHERE (v.data >= '" + inicio + "' AND v.data < '" + fim + "')";
         //JOptionPane.showMessageDialog(null, sql);
         Query query = em.createQuery(sql);
 

@@ -5,10 +5,16 @@
 package janelas;
 
 
+import com.itextpdf.text.DocumentException;
 import entidades.Produto;
+import figueredoconstrucoes.Relatorio;
+import java.awt.Desktop;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -68,6 +74,7 @@ public class ConsultaProdutos extends javax.swing.JDialog {
         jbutaonovo.setVisible(false);
         jbutaoEditar.setVisible(false);
         jbutaoExcluir.setVisible(false);
+        jbutaoImprimir.setVisible(false);
         jbutaoadd.setVisible(true);
         this.produto = produto;
         this.jchave.requestFocus();
@@ -101,6 +108,7 @@ public class ConsultaProdutos extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jbutaonovo = new javax.swing.JButton();
         jbutaoadd = new javax.swing.JButton();
+        jbutaoImprimir = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -283,7 +291,7 @@ public class ConsultaProdutos extends javax.swing.JDialog {
         );
 
         jbutaonovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Add.png"))); // NOI18N
-        jbutaonovo.setText("Novo");
+        jbutaonovo.setText("NOVO");
         jbutaonovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbutaonovoActionPerformed(evt);
@@ -295,6 +303,14 @@ public class ConsultaProdutos extends javax.swing.JDialog {
         jbutaoadd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbutaoaddActionPerformed(evt);
+            }
+        });
+
+        jbutaoImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/imprimir.png"))); // NOI18N
+        jbutaoImprimir.setText("IMPRIMIR");
+        jbutaoImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbutaoImprimirActionPerformed(evt);
             }
         });
 
@@ -310,6 +326,8 @@ public class ConsultaProdutos extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jbutaoadd, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbutaoImprimir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbutaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -332,7 +350,9 @@ public class ConsultaProdutos extends javax.swing.JDialog {
                         .addComponent(jbutaoExcluir)
                         .addComponent(jbutaoEditar)
                         .addComponent(jbutaonovo))
-                    .addComponent(jbutaoadd))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jbutaoImprimir)
+                        .addComponent(jbutaoadd)))
                 .addContainerGap())
         );
 
@@ -417,6 +437,31 @@ public class ConsultaProdutos extends javax.swing.JDialog {
         // TODO add your handling code here:
         this.enviarParaVenda();
     }//GEN-LAST:event_jbutaoaddActionPerformed
+
+    private void jbutaoImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbutaoImprimirActionPerformed
+        // TODO add your handling code here:
+        this.imprimir();
+    }//GEN-LAST:event_jbutaoImprimirActionPerformed
+    
+    private void imprimir(){
+        if(!this.lista.isEmpty()){
+            Relatorio relatorio = new Relatorio();
+            try {
+                File arquivo = relatorio.gerarRelatorioProdutos(this.lista, jradioMinimo.isSelected());
+                Desktop.getDesktop().open(arquivo);
+            } catch (DocumentException ex) {
+                Logger.getLogger(ConsultaProdutos.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(ConsultaProdutos.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(ConsultaProdutos.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(ConsultaProdutos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Não há produtos listados!");
+        }
+    }
     
     private void enviarParaVenda(){
         int i = jTabelaPesquisa.getSelectedRow();
@@ -536,6 +581,7 @@ public class ConsultaProdutos extends javax.swing.JDialog {
     private javax.swing.JTable jTable2;
     private javax.swing.JButton jbutaoEditar;
     private javax.swing.JButton jbutaoExcluir;
+    private javax.swing.JButton jbutaoImprimir;
     private javax.swing.JButton jbutaoadd;
     private javax.swing.JButton jbutaonovo;
     private javax.swing.JTextField jchave;

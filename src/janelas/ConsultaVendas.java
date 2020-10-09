@@ -318,7 +318,7 @@ public class ConsultaVendas extends javax.swing.JDialog {
                 String[] inicio = dataInicial.split("/");
                 String[] fim = dataFinal.split("/");
                 
-                this.lista = Banco.getBanco().consultaVendas(inicio[2]+"-"+inicio[1]+"-"+inicio[0], fim[2]+"-"+fim[1]+"-"+fim[0]);
+                this.lista = Banco.getBanco().consultaVendas(inicio[2]+"-"+inicio[1]+"-"+inicio[0], fim[2]+"-"+fim[1]+"-"+(Double.parseDouble(fim[0])+1));
 
                 for (Venda venda : lista) {
                     String[] linha = new String[7];
