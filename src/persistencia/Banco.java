@@ -89,7 +89,7 @@ public class Banco {
             propriedades.put("javax.persistence.jdbc.user",usuario);
             propriedades.put("javax.persistence.jdbc.password",senha);
             
-            factory = Persistence.createEntityManagerFactory("figueredo", propriedades);
+            factory = Persistence.createEntityManagerFactory(banco, propriedades);
             em = factory.createEntityManager();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Banco.class.getName()).log(Level.SEVERE, null, ex);
